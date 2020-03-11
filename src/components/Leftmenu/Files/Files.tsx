@@ -5,10 +5,10 @@ class Files extends Component {
   render() {
     return (
       <div className={"filescontainer"}>
-        <File level={1} name={"test.js"} type={"js"} />
+        <File level={0} name={"test.js"} type={"js"} />
         <File level={1} name={"source.css"} type={"css"} />
-        <File level={1} name={"index.html"} type={"html"} />
-        <File level={2} name={"index.html"} type={"js"} />
+        <File level={2} name={"index.html"} type={"html"} />
+        <File level={3} name={"index.html"} type={"js"} />
       </div>
     );
   }

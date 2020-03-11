@@ -15,7 +15,7 @@ class Files extends Component<IFile> {
   render() {
     const { name, level, type } = this.props;
     const css: CSS.Properties = {
-      paddingLeft: `${5 * level * 3}px`
+      paddingLeft: `${5 + level * 15}px`
     };
     return (
       <div className={"file"} style={css}>
