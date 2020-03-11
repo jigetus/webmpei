@@ -8,7 +8,6 @@ class App extends Component {
       <>
         <Leftmenu />
         <Right />
-        <>some changes</>
       </>
     );
   }

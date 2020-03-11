@@ -7,7 +7,7 @@ class Right extends Component {
     return (
       <div className={"right"}>
         <Tabbar />
-        <Editor mode={"html"} theme={"github"} defaultvalue={"123"} />
+        <Editor mode={"javascript"} theme={"dracula"} defaultvalue={"123"} />
       </div>
     );
   }

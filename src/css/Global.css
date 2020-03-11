@@ -7,8 +7,9 @@ body {
   padding: 0;
   font-family: "Roboto", sans-serif;
   background-color: #fff;
-  color: #d1d7e0;
+  color: #8e91a7;
   height: 100%;
+  box-sizing: border-box;
 }
 
 #root {
@@ -22,10 +23,11 @@ body {
 .leftmenu {
   width: 250px;
   min-width: 250px;
-  background-color: #2d283e;
+  background: linear-gradient(#3c4159, #181d36);
   display: flex;
   flex-direction: column;
   align-items: center;
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
 }
 
 .right {
@@ -36,6 +38,24 @@ body {
 
 .tabbar {
   height: 50px;
+}
+
+.ace-dracula .ace_gutter {
+  background: linear-gradient(#3f4860, #1a203e);
+  color: #8e91a7;
+  font-family: "Roboto Thin", Consolas, monospace;
+}
+
+.ace_scroller {
+  background: linear-gradient(#3f4860, #1a203e);
+}
+
+.ace-dracula .ace_marker-layer .ace_active-line {
+  background: #4a4f6b;
+}
+
+.ace-dracula .ace_marker-layer .ace_selection {
+  background: #4a4f6b;
 }
 
 /*# sourceMappingURL=Global.css.map */
