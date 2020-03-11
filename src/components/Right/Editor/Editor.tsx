@@ -47,7 +47,7 @@ class Editor extends Component<IEditor> {
         name="ace"
         editorProps={{ $blockScrolling: true }}
         width={"100%"}
-        height={"calc(100% - 50px)"}
+        height={"calc(100% - 80px)"}
         fontSize={25}
         enableLiveAutocompletion={true}
         enableSnippets={true}

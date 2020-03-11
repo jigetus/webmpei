@@ -1,6 +1,6 @@
 //variables
 $leftmenu_width: 250px;
-$editor-tabs_height: 50px;
+$editor-tabs_height: 80px;
 //colors
 $leftmenu_bgc: linear-gradient(#3c4159, #181d36);
 $ace_bgc: linear-gradient(#3f4860, #1a203e);
@@ -16,39 +16,41 @@ body {
   margin: 0;
   padding: 0;
   font-family: "Roboto", sans-serif;
-  background-color: #fff;
   color: $color5;
   height: 100%;
   box-sizing: border-box;
+  background: $leftmenu_bgc;
 }
 #root {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
   height: 100%;
-  background-color: $color2;
 }
 .leftmenu {
   width: $leftmenu_width;
   min-width: $leftmenu_width;
-  background: $leftmenu_bgc;
   display: flex;
   flex-direction: column;
   align-items: center;
-  //border-right: 1px solid $color5;
-  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
 }
 
 .right {
   width: 100%;
-  background-color: $color3;
   height: 100%;
 }
-.tabbar {
+.tabsContainer {
   height: $editor-tabs_height;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  padding-left: 30px;
 }
 
 //ace-editor style
+#ace {
+  border-radius: 7px;
+}
 .ace-dracula .ace_gutter {
   background: $ace_bgc;
   color: $color5;
@@ -62,4 +64,26 @@ body {
 }
 .ace-dracula .ace_marker-layer .ace_selection {
   background: #4a4f6b;
+}
+
+.tab,
+.tab_active {
+  min-width: 100px;
+  text-align: center;
+  line-height: 30px;
+  height: 30px;
+  padding: 5px 10px;
+  background: #3f4860;
+  margin-right: 2px;
+  cursor: pointer;
+  transition: all 0.8s ease;
+
+  &:hover {
+    background: #5f688d;
+  }
+}
+.tab_active {
+  box-shadow: inset 0px -5px 0px 0px #715de5;
+  color: white;
+  background: #313b57;
 }
