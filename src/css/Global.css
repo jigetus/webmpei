@@ -85,4 +85,26 @@ body {
   background: #313b57;
 }
 
+.filescontainer {
+  margin-top: 20px;
+  width: 100%;
+}
+
+.file {
+  width: 100%;
+  padding: 2px 0;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+}
+.file img {
+  height: 26px;
+}
+.file:hover {
+  background: #3f4860;
+  cursor: pointer;
+}
+
 /*# sourceMappingURL=Global.css.map */
