@@ -20,6 +20,7 @@ body {
   height: 100%;
   box-sizing: border-box;
   background: $leftmenu_bgc;
+  overflow: hidden;
 }
 #root {
   display: flex;
@@ -33,6 +34,27 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+  //box-shadow: inset 0px -2px 2px rgba(0, 0, 0, 0.4),
+  //  2px 0px 2px rgba(0, 0, 0, 0.4);
+  position: relative;
+}
+//navigation
+.navigation {
+  width: 40px;
+  min-width: 40px;
+  height: 100%;
+  background-color: #3e475f;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  box-shadow: inset 0px -2px 2px rgba(0, 0, 0, 0.4),
+    2px 0px 2px rgba(0, 0, 0, 0.4);
+  align-items: center;
+  padding: 80px 8px 8px;
+
+  img {
+    width: 30px;
+  }
 }
 
 .right {
@@ -40,7 +62,7 @@ body {
   height: 100%;
 }
 .tabsContainer {
-  height: $editor-tabs_height;
+  height: 40px;
   display: flex;
   flex-direction: row;
   align-items: flex-end;
@@ -49,7 +71,18 @@ body {
 
 //ace-editor style
 #ace {
-  border-radius: 7px;
+  background: $ace_bgc;
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  ::-webkit-scrollbar-track {
+    //box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: rgba(116, 127, 184, 0.8);
+  }
 }
 .ace-dracula .ace_gutter {
   background: $ace_bgc;
@@ -74,7 +107,7 @@ body {
   height: 30px;
   padding: 5px 10px;
   background: #3f4860;
-  margin-right: 2px;
+  margin-right: 3px;
   cursor: pointer;
   transition: all 0.8s ease;
 
@@ -97,6 +130,8 @@ body {
 .file {
   width: 100%;
   padding: 2px 0;
+  margin-left: 5px;
+  margin-right: 10px;
   box-sizing: border-box;
   display: flex;
   flex-direction: row;
@@ -110,4 +145,14 @@ body {
     background: #3f4860;
     cursor: pointer;
   }
+}
+
+.separator {
+  width: 3px;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.2);
+  position: absolute;
+  left: calc(100% - 3px);
+  top: 40px;
+  cursor: col-resize;
 }

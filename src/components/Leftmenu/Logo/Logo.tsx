@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 class Logo extends Component {
   render() {
-    return <span>Logo</span>;
+    return <span>Файлы</span>;
   }
 }
 

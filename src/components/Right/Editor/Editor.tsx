@@ -3,20 +3,8 @@ import AceEditor from "react-ace";
 
 import "ace-builds/src-min-noconflict/ext-searchbox";
 import "ace-builds/src-min-noconflict/ext-language_tools";
-const languages = ["javascript", "css"];
-const themes = [
-  "monokai",
-  "github",
-  "tomorrow",
-  "kuroir",
-  "twilight",
-  "xcode",
-  "textmate",
-  "solarized_dark",
-  "solarized_light",
-  "terminal",
-  "dracula"
-];
+const languages = ["javascript", "css", "html", "php"];
+const themes = ["dracula"];
 languages.forEach(lang => {
   require(`ace-builds/src-noconflict/mode-${lang}`);
   require(`ace-builds/src-noconflict/snippets/${lang}`);
@@ -47,8 +35,8 @@ class Editor extends Component<IEditor> {
         name="ace"
         editorProps={{ $blockScrolling: true }}
         width={"100%"}
-        height={"calc(100% - 80px)"}
-        fontSize={25}
+        height={"calc(100% - 40px)"}
+        fontSize={18}
         enableLiveAutocompletion={true}
         enableSnippets={true}
         defaultValue={defaultvalue}

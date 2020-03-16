@@ -1,14 +1,26 @@
-import React, { Component } from "react";
+import React, { Component, CSSProperties } from "react";
 import Logo from "./Logo/Logo";
 import Files from "./Files/Files";
+import ResizePanel from "react-resize-panel";
 
-class Leftmenu extends Component {
+interface IState {
+  leftmenuwidth?: any;
+}
+
+class Leftmenu extends Component<IState> {
+  constructor(props: any) {
+    super(props);
+  }
   render() {
+    // const { leftmenuwidth } = this.state;
     return (
-      <div className={"leftmenu"}>
-        <Logo />
-        <Files />
-      </div>
+      <ResizePanel direction="e">
+        <div className={"leftmenu panel sidebar"}>
+          <Logo />
+          <Files />
+          {/*<div className={"separator"} />*/}
+        </div>
+      </ResizePanel>
     );
   }
 }
