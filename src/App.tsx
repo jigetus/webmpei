@@ -9,7 +9,6 @@ class App extends Component {
       <>
         <Navigation />
         <Leftmenu />
-
         <Right />
       </>
     );
