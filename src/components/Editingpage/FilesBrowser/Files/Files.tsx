@@ -9,6 +9,7 @@ class Files extends Component {
         <File level={1} name={"source.css"} type={"css"} />
         <File level={2} name={"index.html"} type={"html"} />
         <File level={3} name={"index.html"} type={"js"} />
+        <File level={3} name={"start.php"} type={"php"} />
       </div>
     );
   }

@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import CSS from "csstype";
+import SVGIcon from "./SVGIcon";
 
 interface IFile {
   type: string;
@@ -19,7 +20,7 @@ class Files extends Component<IFile> {
     };
     return (
       <div className={"file"} style={css}>
-        <img src={`../file_icons/${type}.png`} /> <div>{name}</div>
+        <SVGIcon name={type} /> <div>{name}</div>
       </div>
     );
   }

@@ -40,20 +40,55 @@ body {
 }
 //navigation
 .navigation {
-  width: 40px;
-  min-width: 40px;
+  width: 100px;
+  min-width: 100px;
   height: 100%;
-  background-color: #3e475f;
+  background: $ace_bgc;
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
   box-shadow: inset 0px -2px 2px rgba(0, 0, 0, 0.4),
     2px 0px 2px rgba(0, 0, 0, 0.4);
   align-items: center;
-  padding: 80px 8px 8px;
+  padding: 80px 0px 0px;
 
-  img {
-    width: 30px;
+  a {
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    color: #8e91a7;
+    letter-spacing: 1px;
+    font-weight: bold;
+    font-size: 14px;
+    padding-bottom: 5px;
+    &.active {
+      background-color: #424e6e;
+      color: #a688ea;
+      svg {
+        path {
+          fill: #a688ea;
+        }
+      }
+    }
+    &:hover {
+      color: #a688ea;
+      svg {
+        path {
+          fill: #a688ea;
+        }
+      }
+    }
+    svg {
+      width: 50px;
+      padding: 4px;
+      box-sizing: border-box;
+      cursor: pointer;
+      path {
+        fill: #8e91a7;
+      }
+    }
   }
 }
 
@@ -138,8 +173,8 @@ body {
   flex-wrap: nowrap;
   align-items: center;
 
-  img {
-    height: 26px;
+  svg {
+    height: 32px;
   }
   &:hover {
     background: #3f4860;

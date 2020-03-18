@@ -1,12 +1,11 @@
 import React, { Component, CSSProperties } from "react";
-import Logo from "./Logo/Logo";
 import Files from "./Files/Files";
 
 interface IState {
   leftmenuwidth?: any;
 }
 
-class Leftmenu extends Component<IState> {
+class FilesBrowser extends Component<IState> {
   constructor(props: any) {
     super(props);
   }
@@ -14,7 +13,6 @@ class Leftmenu extends Component<IState> {
     // const { leftmenuwidth } = this.state;
     return (
       <div className={"leftmenu panel sidebar"}>
-        <Logo />
         <Files />
         {/*<div className={"separator"} />*/}
       </div>
@@ -22,4 +20,4 @@ class Leftmenu extends Component<IState> {
   }
 }
 
-export default Leftmenu;
+export default FilesBrowser;
