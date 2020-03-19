@@ -1,14 +1,9 @@
 //variables
 $leftmenu_width: 250px;
 $editor-tabs_height: 80px;
+$container: 70%;
 //colors
-$leftmenu_bgc: linear-gradient(#3c4159, #181d36);
-$ace_bgc: linear-gradient(#3f4860, #1a203e);
-$color1: #802bb1;
-$color2: #2d283e;
-$color3: #564f6f;
-$color4: #4c495d;
-$color5: #8e91a7;
+
 html {
   height: 100%;
 }
@@ -16,59 +11,41 @@ body {
   margin: 0;
   padding: 0;
   font-family: "Roboto", sans-serif;
-  color: $color5;
   height: 100%;
   box-sizing: border-box;
-  background: $leftmenu_bgc;
-  overflow: hidden;
 }
 #root {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   flex-wrap: nowrap;
   height: 100%;
-}
-.leftmenu {
-  width: $leftmenu_width;
-  min-width: $leftmenu_width;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  //box-shadow: inset 0px -2px 2px rgba(0, 0, 0, 0.4),
-  //  2px 0px 2px rgba(0, 0, 0, 0.4);
-  position: relative;
 }
 //navigation
 .navigation {
-  width: 100px;
-  min-width: 100px;
-  height: 100%;
-  background: $ace_bgc;
+  width: 100%;
+  min-height: 70px;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   flex-wrap: nowrap;
-  box-shadow: inset 0px -2px 2px rgba(0, 0, 0, 0.4),
-    2px 0px 2px rgba(0, 0, 0, 0.4);
-  align-items: center;
-  padding: 80px 0px 0px;
+  box-shadow: 2px 0 2px rgb(0, 0, 0);
+  box-sizing: border-box;
 
+  .menu {
+    width: $container;
+    display: flex;
+    flex-direction: row;
+    margin: 0 auto;
+    box-sizing: border-box;
+  }
   a {
     text-decoration: none;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-    color: #8e91a7;
+    display: block;
     letter-spacing: 1px;
     font-weight: bold;
     font-size: 14px;
-    padding-bottom: 5px;
     &.active {
-      background-color: #424e6e;
-      color: #a688ea;
       svg {
         path {
-          fill: #a688ea;
         }
       }
     }
@@ -91,7 +68,16 @@ body {
     }
   }
 }
-
+.leftmenu {
+  width: $leftmenu_width;
+  min-width: $leftmenu_width;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  //box-shadow: inset 0px -2px 2px rgba(0, 0, 0, 0.4),
+  //  2px 0px 2px rgba(0, 0, 0, 0.4);
+  position: relative;
+}
 .right {
   width: 100%;
   height: 100%;
@@ -106,7 +92,6 @@ body {
 
 //ace-editor style
 #ace {
-  background: $ace_bgc;
   ::-webkit-scrollbar {
     width: 10px;
   }
@@ -118,20 +103,6 @@ body {
   ::-webkit-scrollbar-thumb {
     background: rgba(116, 127, 184, 0.8);
   }
-}
-.ace-dracula .ace_gutter {
-  background: $ace_bgc;
-  color: $color5;
-  font-family: "Roboto Thin", Consolas, monospace;
-}
-.ace_scroller {
-  background: $ace_bgc;
-}
-.ace-dracula .ace_marker-layer .ace_active-line {
-  background: #4a4f6b;
-}
-.ace-dracula .ace_marker-layer .ace_selection {
-  background: #4a4f6b;
 }
 
 .tab,

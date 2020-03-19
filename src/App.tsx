@@ -1,20 +1,15 @@
 import React, { Component } from "react";
 import Editingpage from "./components/Editingpage/Editingpage";
 import Navigation from "./components/Navigation/Navigation";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import { TransitionGroup, CSSTransition } from "react-transition-group";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 class App extends Component {
   render() {
     return (
       <Router>
         <Navigation />
         <Switch />
-        <Route path="/" exact>
-          <h1>Заглушечка</h1>
-        </Route>
-        <Route path="/editor">
-          <Editingpage />
-        </Route>
+         <Route path="/" exact component={()=><h1>Заглушечка</h1>} />
+         <Route path="/editor" component={()=><Editingpage />} />
         <Switch />
       </Router>
     );

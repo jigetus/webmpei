@@ -4,7 +4,7 @@ import AceEditor from "react-ace";
 import "ace-builds/src-min-noconflict/ext-searchbox";
 import "ace-builds/src-min-noconflict/ext-language_tools";
 const languages = ["javascript", "css", "html", "php"];
-const themes = ["dracula"];
+const themes = ["dracula", 'xcode'];
 languages.forEach(lang => {
   require(`ace-builds/src-noconflict/mode-${lang}`);
   require(`ace-builds/src-noconflict/snippets/${lang}`);
