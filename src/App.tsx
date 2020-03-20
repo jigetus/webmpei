@@ -8,8 +8,22 @@ class App extends Component {
       <Router>
         <Navigation />
         <Switch />
-         <Route path="/" exact component={()=><h1>Заглушечка</h1>} />
-         <Route path="/editor" component={()=><Editingpage />} />
+        <Route
+          path="/"
+          exact
+          component={() => (
+            <div className={"container"}>
+              {" "}
+              <h1>Заглушечка</h1>{" "}
+            </div>
+          )}
+        />
+        <Route
+          path="/editor"
+          component={() => (
+            <Editingpage filespanelsize={220} previewpanelsize={600} />
+          )}
+        />
         <Switch />
       </Router>
     );

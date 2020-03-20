@@ -2,8 +2,18 @@
   <dictionary name="danilov-av">
     <words>
       <w>editingpage</w>
+      <w>editorpanel</w>
+      <w>editorpanelsize</w>
       <w>filescontainer</w>
+      <w>filespanel</w>
+      <w>filespanelsize</w>
+      <w>greybgc</w>
+      <w>helpspace</w>
       <w>leftmenuwidth</w>
+      <w>linkhover</w>
+      <w>navwidth</w>
+      <w>previewpanel</w>
+      <w>previewpanelsize</w>
       <w>resizestart</w>
     </words>
   </dictionary>

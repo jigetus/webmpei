@@ -12,9 +12,8 @@ class FilesBrowser extends Component<IState> {
   render() {
     // const { leftmenuwidth } = this.state;
     return (
-      <div className={"leftmenu panel sidebar"}>
+      <div className={"filespanel"}>
         <Files />
-        {/*<div className={"separator"} />*/}
       </div>
     );
   }

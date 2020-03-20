@@ -4,7 +4,7 @@ import AceEditor from "react-ace";
 import "ace-builds/src-min-noconflict/ext-searchbox";
 import "ace-builds/src-min-noconflict/ext-language_tools";
 const languages = ["javascript", "css", "html", "php"];
-const themes = ["dracula", 'xcode'];
+const themes = ["dracula", "xcode"];
 languages.forEach(lang => {
   require(`ace-builds/src-noconflict/mode-${lang}`);
   require(`ace-builds/src-noconflict/snippets/${lang}`);
@@ -35,12 +35,13 @@ class Editor extends Component<IEditor> {
         name="ace"
         editorProps={{ $blockScrolling: true }}
         width={"100%"}
-        height={"calc(100% - 40px)"}
+        height={"calc(100% - 45px)"}
         fontSize={18}
         enableLiveAutocompletion={true}
         enableSnippets={true}
         defaultValue={defaultvalue}
         showPrintMargin={false}
+        wrapEnabled={true}
         setOptions={{
           useWorker: false,
           highlightGutterLine: false

@@ -68,10 +68,10 @@ const tmpText: string =
   "\n" +
   "export default Editor;\n";
 
-class Right extends Component {
+class Editorpanel extends Component {
   render() {
     return (
-      <div className={"right"}>
+      <div className={"editorpanel"}>
         <Tabbar />
         <Editor mode={"javascript"} theme={"xcode"} defaultvalue={tmpText} />
       </div>
@@ -79,4 +79,4 @@ class Right extends Component {
   }
 }
 
-export default Right;
+export default Editorpanel;

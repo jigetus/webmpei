@@ -3,7 +3,10 @@ $leftmenu_width: 250px;
 $editor-tabs_height: 80px;
 $container: 70%;
 //colors
-
+$white_col: #fff;
+$greybgc_col: #f8f8f8;
+$link_col: #26282b;
+$linkhover_col: #e2022e;
 html {
   height: 100%;
 }
@@ -13,6 +16,11 @@ body {
   font-family: "Roboto", sans-serif;
   height: 100%;
   box-sizing: border-box;
+  background-color: $greybgc_col;
+}
+.container {
+  width: $container;
+  margin: 0 auto;
 }
 #root {
   display: flex;
@@ -24,70 +32,100 @@ body {
 .navigation {
   width: 100%;
   min-height: 70px;
+  max-height: 70px;
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
   box-shadow: 2px 0 2px rgb(0, 0, 0);
   box-sizing: border-box;
-
-  .menu {
-    width: $container;
+  background-color: $white_col;
+  .navwidth {
+    min-width: $container;
+    margin: 0 auto;
     display: flex;
     flex-direction: row;
-    margin: 0 auto;
-    box-sizing: border-box;
+    .logo {
+      img {
+        width: 70px;
+      }
+    }
+    .helpspace {
+      width: 100%;
+    }
   }
-  a {
-    text-decoration: none;
-    display: block;
-    letter-spacing: 1px;
-    font-weight: bold;
-    font-size: 14px;
-    &.active {
-      svg {
-        path {
+  .menu {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    box-sizing: border-box;
+
+    a {
+      text-decoration: none;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: nowrap;
+      align-items: center;
+      font-weight: bold;
+      font-size: 14px;
+      color: $link_col;
+      padding: 0 15px;
+      transition: all 0.4s ease;
+      &.active {
+        color: $linkhover_col;
+        svg {
+          path {
+            fill: $linkhover_col;
+          }
         }
       }
-    }
-    &:hover {
-      color: #a688ea;
-      svg {
-        path {
-          fill: #a688ea;
+      &:hover {
+        color: $linkhover_col;
+        svg {
+          path {
+            fill: $linkhover_col;
+          }
         }
       }
-    }
-    svg {
-      width: 50px;
-      padding: 4px;
-      box-sizing: border-box;
-      cursor: pointer;
-      path {
-        fill: #8e91a7;
+      svg {
+        width: 28px;
+        padding: 4px;
+        box-sizing: border-box;
+        cursor: pointer;
+        path {
+          transition: fill 0.4s ease;
+          fill: $link_col;
+        }
       }
     }
   }
 }
-.leftmenu {
-  width: $leftmenu_width;
-  min-width: $leftmenu_width;
+
+.editing-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  height: 100%;
+  position: relative;
+  box-sizing: border-box;
+}
+.filespanel {
   display: flex;
   flex-direction: column;
   align-items: center;
-  //box-shadow: inset 0px -2px 2px rgba(0, 0, 0, 0.4),
-  //  2px 0px 2px rgba(0, 0, 0, 0.4);
   position: relative;
+  overflow: hidden;
 }
-.right {
-  width: 100%;
+.editorpanel {
   height: 100%;
+  width: 100%;
 }
 .tabsContainer {
-  height: 40px;
+  height: 45px;
   display: flex;
   flex-direction: row;
   align-items: flex-end;
-  padding-left: 30px;
+  padding-left: 53px;
+  //margin-top: 5px;
 }
 
 //ace-editor style
@@ -101,7 +139,8 @@ body {
   }
 
   ::-webkit-scrollbar-thumb {
-    background: rgba(116, 127, 184, 0.8);
+    background: $linkhover_col;
+    border-radius: 10px;
   }
 }
 
@@ -112,19 +151,18 @@ body {
   line-height: 30px;
   height: 30px;
   padding: 5px 10px;
-  background: #3f4860;
+  background: #e8e8e8;
   margin-right: 3px;
   cursor: pointer;
   transition: all 0.8s ease;
-
+  font-weight: 400;
   &:hover {
-    background: #5f688d;
+    background: lightgrey;
   }
 }
 .tab_active {
-  box-shadow: inset 0px -5px 0px 0px #715de5;
   color: white;
-  background: #313b57;
+  background: $linkhover_col;
 }
 
 //file
@@ -148,17 +186,11 @@ body {
     height: 32px;
   }
   &:hover {
-    background: #3f4860;
+    background: lightgrey;
     cursor: pointer;
   }
 }
 
-.separator {
+.splitter-layout > .layout-splitter {
   width: 3px;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.2);
-  position: absolute;
-  left: calc(100% - 3px);
-  top: 40px;
-  cursor: col-resize;
 }
