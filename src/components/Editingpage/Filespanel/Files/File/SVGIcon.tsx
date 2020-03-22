@@ -1,21 +1,21 @@
 import React from "react";
 
-const getViewBox = (name: string) => {
-  switch (name) {
-    case "js":
-      return "0 0 25 25";
-    case "message":
-      return "0 0 38 34";
-    case "envelope":
-      return "0 0 40 26";
-    case "trash":
-      return "0 0 13.5 17.5";
-    case "wifi":
-      return "0 0 12 9";
-    default:
-      return "0 0 32 32";
-  }
-};
+// const getViewBox = (name: string) => {
+//   switch (name) {
+//     case "js":
+//       return "0 0 25 25";
+//     case "message":
+//       return "0 0 38 34";
+//     case "envelope":
+//       return "0 0 40 26";
+//     case "trash":
+//       return "0 0 13.5 17.5";
+//     case "wifi":
+//       return "0 0 12 9";
+//     default:
+//       return "0 0 32 32";
+//   }
+// };
 
 const getPath = (name: string) => {
   switch (name) {

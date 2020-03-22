@@ -20,11 +20,6 @@ interface IEditor {
 }
 
 class Editor extends Component<IEditor> {
-  constructor(props: IEditor) {
-    super(props);
-  }
-  componentDidMount(): void {}
-
   render() {
     const { mode, theme, defaultvalue } = this.props;
     return (

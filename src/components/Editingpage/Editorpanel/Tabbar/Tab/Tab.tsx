@@ -6,9 +6,6 @@ interface ITab {
 }
 
 class Tab extends Component<ITab> {
-  constructor(props: ITab) {
-    super(props);
-  }
   render() {
     const { filename, isActive } = this.props;
     return <div className={isActive ? "tab_active" : "tab"}>{filename}</div>;

@@ -10,9 +10,6 @@ interface IFile {
 }
 
 class Files extends Component<IFile> {
-  constructor(props: IFile) {
-    super(props);
-  }
   render() {
     const { name, level, type } = this.props;
     const css: CSS.Properties = {

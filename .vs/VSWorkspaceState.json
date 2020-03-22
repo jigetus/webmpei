@@ -1,0 +1,12 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\src",
+    "\\src\\components",
+    "\\src\\components\\Editingpage",
+    "\\src\\components\\Editingpage\\Editorpanel",
+    "\\src\\components\\Editingpage\\Editorpanel\\Editor"
+  ],
+  "SelectedNode": "\\src\\components\\Editingpage\\Editorpanel\\Editor\\Editor.tsx",
+  "PreviewInSolutionExplorer": false
+}

@@ -4,6 +4,8 @@ import Editorpanel from "./Editorpanel/Editorpanel";
 import Previewpanel from "./Previewpanel/Previewpanel";
 import SplitterLayout from "react-splitter-layout";
 import "react-splitter-layout/lib/index.css";
+import { motion } from "framer-motion";
+import pageTransition from "../../utils/Routeanimation";
 
 interface IEditingpage {
   filespanelsize: number;
@@ -14,7 +16,13 @@ class Editingpage extends Component<IEditingpage> {
   render() {
     const { filespanelsize, previewpanelsize } = this.props;
     return (
-      <div className={"editing-container"}>
+      <motion.div
+        className={"editing-container"}
+        initial="out"
+        animate="in"
+        exit="out"
+        variants={pageTransition}
+      >
         <SplitterLayout
           primaryIndex={1}
           secondaryInitialSize={filespanelsize}
@@ -37,7 +45,7 @@ class Editingpage extends Component<IEditingpage> {
             <Previewpanel />
           </SplitterLayout>
         </SplitterLayout>
-      </div>
+      </motion.div>
     );
   }
 }
