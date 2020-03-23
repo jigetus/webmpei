@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import FilesBrowser from "./Filespanel/FilesBrowser";
-import Editorpanel from "./Editorpanel/Editorpanel";
 import Previewpanel from "./Previewpanel/Previewpanel";
 import SplitterLayout from "react-splitter-layout";
 import "react-splitter-layout/lib/index.css";

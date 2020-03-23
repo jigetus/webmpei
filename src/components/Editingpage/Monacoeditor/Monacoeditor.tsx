@@ -7,19 +7,24 @@ class Monacoeditor extends Component {
       selectOnLineNumbers: true,
       automaticLayout: true,
       enableLiveAutocompletion: true,
-      enableEmmet: true
+      enableEmmet: true,
+      minimap: {
+        enabled: false
+      }
       // wordWrap: "on"
     };
     return (
-      <MonacoEditor
-        width="100%"
-        height="calc(100vh - 100px)"
-        language="html"
-        theme="vs-light"
-        value={"const abs = 'hello world'"}
-        editorWillMount={() => {}}
-        options={options}
-      />
+      <div className={"editorpanel"}>
+        <MonacoEditor
+          width="100%"
+          height="calc(100vh - 100px)"
+          language="html"
+          theme="vs-light"
+          value={"const abs = 'hello world'"}
+          editorWillMount={() => {}}
+          options={options}
+        />
+      </div>
     );
   }
 }

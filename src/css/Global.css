@@ -8,7 +8,7 @@ body {
   font-family: "Roboto", sans-serif;
   height: 100%;
   box-sizing: border-box;
-  background-color: #f8f8f8;
+  background-color: #ffffff;
 }
 
 .container {
@@ -115,14 +115,6 @@ body {
   flex-direction: row;
   align-items: flex-end;
   padding-left: 53px;
-}
-
-#ace ::-webkit-scrollbar {
-  width: 10px;
-}
-#ace ::-webkit-scrollbar-thumb {
-  background: #e2022e;
-  border-radius: 10px;
 }
 
 .tab,
