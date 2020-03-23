@@ -6,6 +6,7 @@ import SplitterLayout from "react-splitter-layout";
 import "react-splitter-layout/lib/index.css";
 import { motion } from "framer-motion";
 import pageTransition from "../../utils/Routeanimation";
+import Monacoeditor from "./Monacoeditor/Monacoeditor";
 
 interface IEditingpage {
   filespanelsize: number;
@@ -40,7 +41,8 @@ class Editingpage extends Component<IEditingpage> {
               onSecondaryPaneSizeChange={(size: number) => {}}
               onDragEnd={() => window.dispatchEvent(new Event("resize"))}
             >
-              <Editorpanel />
+              {/*<Editorpanel />*/}
+              <Monacoeditor></Monacoeditor>
             </SplitterLayout>
             <Previewpanel />
           </SplitterLayout>
