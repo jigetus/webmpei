@@ -26,12 +26,7 @@ class App extends Component {
                 </motion.div>
               )}
             />
-            <Route
-              path="/editor"
-              component={() => (
-                <Editingpage filespanelsize={220} previewpanelsize={600} />
-              )}
-            />
+            <Route path="/editor" component={() => <Editingpage />} />
           </Switch>
         </AnimatePresence>
       </Router>

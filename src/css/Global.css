@@ -30,7 +30,7 @@ body {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
-  box-shadow: 2px 0 2px black;
+  border-bottom: 1px solid #e6e6e6;
   box-sizing: border-box;
   background-color: #fff;
 }
@@ -63,6 +63,7 @@ body {
   color: #26282b;
   padding: 0 15px;
   transition: all 0.4s ease;
+  white-space: nowrap;
 }
 .navigation .menu a.active {
   color: #e2022e;
@@ -105,39 +106,28 @@ body {
 }
 
 .editorpanel {
-  height: 100%;
+  height: calc(100% - 50px);
   width: 100%;
+  box-sizing: border-box;
+  overflow: hidden;
 }
 
-.tabsContainer {
-  height: 45px;
+.TabsAndControls {
+  height: 50px;
   display: flex;
   flex-direction: row;
-  align-items: flex-end;
   padding-left: 53px;
 }
 
-.tab,
-.tab_active {
-  min-width: 100px;
-  text-align: center;
-  line-height: 30px;
-  height: 30px;
-  padding: 5px 10px;
-  background: #e8e8e8;
-  margin-right: 3px;
-  cursor: pointer;
-  transition: all 0.8s ease;
-  font-weight: 400;
-}
-.tab:hover,
-.tab_active:hover {
-  background: lightgrey;
+.tabs {
+  width: 100%;
+  background-color: red;
 }
 
-.tab_active {
-  color: white;
-  background: #e2022e;
+.controls {
+  min-width: 200px;
+  width: 200px;
+  background-color: lightgreen;
 }
 
 .filescontainer {
@@ -165,7 +155,12 @@ body {
 }
 
 .splitter-layout > .layout-splitter {
-  width: 3px;
+  width: 2px;
+  background-color: #e6e6e6;
+}
+
+.layout-pane .layout-pane-primary {
+  width: 100%;
 }
 
 /*# sourceMappingURL=Global.css.map */
