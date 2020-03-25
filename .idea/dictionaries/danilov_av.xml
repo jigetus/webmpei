@@ -9,10 +9,12 @@
       <w>filescontainer</w>
       <w>filespanel</w>
       <w>filespanelsize</w>
+      <w>filetype</w>
       <w>greybgc</w>
       <w>helpspace</w>
       <w>leftmenuwidth</w>
       <w>linkhover</w>
+      <w>middlewares</w>
       <w>minimap</w>
       <w>monacoeditor</w>
       <w>navwidth</w>

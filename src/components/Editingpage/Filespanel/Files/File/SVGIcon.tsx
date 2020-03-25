@@ -1,22 +1,5 @@
 import React from "react";
 
-// const getViewBox = (name: string) => {
-//   switch (name) {
-//     case "js":
-//       return "0 0 25 25";
-//     case "message":
-//       return "0 0 38 34";
-//     case "envelope":
-//       return "0 0 40 26";
-//     case "trash":
-//       return "0 0 13.5 17.5";
-//     case "wifi":
-//       return "0 0 12 9";
-//     default:
-//       return "0 0 32 32";
-//   }
-// };
-
 const getPath = (name: string) => {
   switch (name) {
     case "css":
@@ -80,6 +63,13 @@ const getPath = (name: string) => {
           fill="#1E88E5"
         />
       );
+    case "close":
+      return (
+        <>
+          <line x1="7" y1="17" x2="17" y2="7" stroke="black" stroke-width="2" />
+          <line x1="7" y1="7" x2="17" y2="17" stroke="black" stroke-width="2" />
+        </>
+      );
     default:
       return <path />;
   }
@@ -90,13 +80,14 @@ const SVGIcon = ({
   style = {},
   fill = "#000",
   viewBox = "",
-  className = ""
+  className = "",
+  isVisible = true
 }) => (
   <svg
-    style={style}
+    style={{ ...style, opacity: isVisible ? 1 : 0 }}
     className={className}
     xmlns="http://www.w3.org/2000/svg"
-    viewBox={"0 0 25 25"}
+    viewBox={name !== "close" ? "0 0 25 25" : "0 0 25 25"}
     xmlnsXlink="http://www.w3.org/1999/xlink"
   >
     {getPath(name)}

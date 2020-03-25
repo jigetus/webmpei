@@ -7,26 +7,11 @@ import "react-splitter-layout/lib/index.css";
 import { motion } from "framer-motion";
 import pageTransition from "../../utils/Routeanimation";
 import Monacoeditor from "./Monacoeditor/Monacoeditor";
-import { IRootState } from "../../redux/rootReducer";
 import {
   changeFilebrowserWidth,
   changePreviewWidth
-} from "../../redux/actions";
-
-const mapState = (state: IRootState) => {
-  return {
-    editor: state.editor
-  };
-};
-
-const mapDispatch = () => ({
-  first: changeFilebrowserWidth,
-  second: changePreviewWidth
-});
-const connector = connect(mapState, mapDispatch);
-
-// @ts-ignore
-type PropsFromRedux = ConnectedProps<typeof connector>;
+} from "../../redux/Editor/actions";
+import { AppState } from "../../redux";
 
 interface IEditingpageState {
   filebrowserWidth: number;
@@ -54,35 +39,32 @@ class Editingpage extends Component<PropsFromRedux, IEditingpageState> {
         <SplitterLayout
           primaryIndex={1}
           secondaryInitialSize={filebrowserWidth}
-          secondaryMinSize={200}
-          primaryMinSize={1400}
           onSecondaryPaneSizeChange={(size: number) => {
             this.setState({ filebrowserWidth: size });
           }}
           onDragEnd={() => {
             window.dispatchEvent(new Event("resize"));
-            this.props.first(this.state.filebrowserWidth);
+            this.props.changeFilebrowserWidth(this.state.filebrowserWidth);
           }}
         >
           <FilesBrowser />
           <SplitterLayout
             secondaryInitialSize={previewWidth}
-            primaryMinSize={600}
-            secondaryMinSize={50}
-            onSecondaryPaneSizeChange={(size: number) => {}}
+            onSecondaryPaneSizeChange={(size: number) => {
+              this.setState({ previewWidth: size });
+            }}
             onDragEnd={() => {
               window.dispatchEvent(new Event("resize"));
+              this.props.changePreviewWidth(this.state.previewWidth);
             }}
           >
             <SplitterLayout
               vertical
-              secondaryMinSize={600}
               onSecondaryPaneSizeChange={(size: number) => {}}
               onDragEnd={() => {
                 window.dispatchEvent(new Event("resize"));
               }}
             >
-              {/*<Editorpanel />*/}
               <Monacoeditor />
             </SplitterLayout>
             <Previewpanel />
@@ -92,5 +74,17 @@ class Editingpage extends Component<PropsFromRedux, IEditingpageState> {
     );
   }
 }
+
+const mapStateToProps = (state: AppState) => ({
+  editor: state.editor
+});
+
+const connector = connect(mapStateToProps, {
+  changeFilebrowserWidth,
+  changePreviewWidth
+});
+
+// @ts-ignore
+type PropsFromRedux = ConnectedProps<typeof connector>;
 
 export default connector(Editingpage);

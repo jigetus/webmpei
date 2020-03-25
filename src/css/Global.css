@@ -121,13 +121,49 @@ body {
 
 .tabs {
   width: 100%;
-  background-color: red;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+}
+
+.tab {
+  padding: 2px 5px 2px 10px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  border: 1px solid #e6e6e6;
+  border-bottom: none;
+  margin-right: 2px;
+  cursor: pointer;
+  background-color: #f4f4f4;
+}
+.tab:hover {
+  background: #fff;
+}
+.tab svg {
+  width: 20px;
+  margin-right: 5px;
+}
+.tab .close-container svg {
+  margin-right: 0;
+  margin-top: 4px;
+}
+.tab span {
+  font-size: 14px;
+  margin-right: 12px;
+}
+.active_tab {
+  background-color: #fff;
 }
 
 .controls {
   min-width: 200px;
   width: 200px;
-  background-color: lightgreen;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .filescontainer {
