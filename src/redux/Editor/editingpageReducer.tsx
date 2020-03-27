@@ -1,4 +1,3 @@
-import { Action } from "redux";
 import {
   EDITINGPAGE_CHANGE_FILEBROWSER_WIDTH,
   EDITINGPAGE_CHANGE_PREVIEW_WIDTH,

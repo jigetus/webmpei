@@ -1,0 +1,85 @@
+[
+    {
+    "filename": "lab1",
+    "filetype": "folder",
+    "isFolder": true,
+    "filedata": null,
+    "children": [
+        {
+            "filename": "css",
+            "filetype": "folder",
+            "isFolder": true,
+            "filedata": null,
+            "children": [{
+                    "filename": "main.css",
+                    "filetype": "css",
+                    "isFolder": false,
+                    "filedata": "body {margin: 0, padding: 0",
+                    "children": null
+                }
+            ]
+        },
+        {
+            "filename": "scripts",
+            "filetype": "folder",
+            "isFolder": true,
+            "filedata": null,
+            "children": [{
+                "filename": "load.js",
+                "filetype": "javascript",
+                "isFolder": false,
+                "filedata": "document.getElementById('klek')",
+                "children": null
+            }]
+        },
+        {
+            "filename": "index.html",
+            "filetype": "html",
+            "isFolder": false,
+            "filedata": "<h1>Hello world</h1>",
+            "children": null
+        }
+    ]
+}, {
+    "filename": "lab2",
+    "filetype": "folder",
+    "isFolder": true,
+    "filedata": null,
+    "children": [
+        {
+            "filename": "css2",
+            "filetype": "folder",
+            "isFolder": true,
+            "filedata": null,
+            "children": [{
+                    "filename": "main2.css",
+                    "filetype": "css",
+                    "isFolder": false,
+                    "filedata": "body {margin: 0, padding: 0",
+                    "children": null
+                }
+            ]
+        },
+        {
+            "filename": "scripts2",
+            "filetype": "folder",
+            "isFolder": true,
+            "filedata": null,
+            "children": [{
+                "filename": "load2.js",
+                "filetype": "javascript",
+                "isFolder": false,
+                "filedata": "document.getElementById('klek')",
+                "children": null
+            }]
+        },
+        {
+            "filename": "index.html",
+            "filetype": "html",
+            "isFolder": false,
+            "filedata": "<h1>Hello world</h1>",
+            "children": null
+        }
+    ]
+}
+]

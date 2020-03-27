@@ -4,7 +4,39 @@ import Navigation from "./components/Navigation/Navigation";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
 import pageTransition from "./utils/Routeanimation";
-class App extends Component {
+import { AppState } from "./redux";
+import { connect, ConnectedProps } from "react-redux";
+import {
+  fetchFilesError,
+  fetchFilesPending,
+  fetchFilesSuccess
+} from "./redux/Files/actions";
+
+interface IAppState {
+  isDataLoaded: boolean;
+}
+class App extends Component<PropsFromRedux, IAppState> {
+  componentDidMount(): void {
+    const {
+      fetchFilesError,
+      fetchFilesPending,
+      fetchFilesSuccess
+    } = this.props;
+    fetchFilesPending();
+    fetch("/userfiles.json")
+      .then(res => res.json())
+      .then(res => {
+        if (res.error) {
+          throw res.error;
+        }
+        fetchFilesSuccess(res);
+        return res;
+      })
+      .catch(error => {
+        fetchFilesError(error);
+      });
+  }
+
   render() {
     return (
       <Router>
@@ -34,4 +66,16 @@ class App extends Component {
   }
 }
 
-export default App;
+const mapStateToProps = (state: AppState) => ({
+  state
+});
+
+const connector = connect(mapStateToProps, {
+  fetchFilesPending,
+  fetchFilesError,
+  fetchFilesSuccess
+});
+
+// @ts-ignore
+type PropsFromRedux = ConnectedProps<typeof connector>;
+export default connector(App);

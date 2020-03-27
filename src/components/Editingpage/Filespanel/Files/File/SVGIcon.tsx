@@ -66,8 +66,8 @@ const getPath = (name: string) => {
     case "close":
       return (
         <>
-          <line x1="7" y1="17" x2="17" y2="7" stroke="black" stroke-width="2" />
-          <line x1="7" y1="7" x2="17" y2="17" stroke="black" stroke-width="2" />
+          <line x1="7" y1="17" x2="17" y2="7" stroke="black" strokeWidth="2" />
+          <line x1="7" y1="7" x2="17" y2="17" stroke="black" strokeWidth="2" />
         </>
       );
     default:
