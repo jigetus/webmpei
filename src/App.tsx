@@ -2,8 +2,7 @@ import React, { Component } from "react";
 import Editingpage from "./components/Editingpage/Editingpage";
 import Navigation from "./components/Navigation/Navigation";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import { AnimatePresence, motion } from "framer-motion";
-import pageTransition from "./utils/Routeanimation";
+import { AnimatePresence } from "framer-motion";
 import { AppState } from "./redux";
 import { connect, ConnectedProps } from "react-redux";
 import {
@@ -11,12 +10,19 @@ import {
   fetchFilesPending,
   fetchFilesSuccess
 } from "./redux/Files/actions";
+import Projectspage from "./components/Projectspage/Projectspage";
+import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
+import Loader from "react-loader-spinner";
 
 interface IAppState {
   isDataLoaded: boolean;
 }
 class App extends Component<PropsFromRedux, IAppState> {
+  state: Readonly<IAppState> = {
+    isDataLoaded: false
+  };
   componentDidMount(): void {
+    this.setState({ isDataLoaded: false });
     const {
       fetchFilesError,
       fetchFilesPending,
@@ -30,6 +36,7 @@ class App extends Component<PropsFromRedux, IAppState> {
           throw res.error;
         }
         fetchFilesSuccess(res);
+        this.setState({ isDataLoaded: true });
         return res;
       })
       .catch(error => {
@@ -38,31 +45,27 @@ class App extends Component<PropsFromRedux, IAppState> {
   }
 
   render() {
-    return (
-      <Router>
-        <Navigation />
-        <AnimatePresence>
-          <Switch>
-            <Route
-              path="/"
-              exact
-              component={() => (
-                <motion.div
-                  className={"container"}
-                  initial="out"
-                  animate="in"
-                  exit="out"
-                  variants={pageTransition}
-                >
-                  <h1>Заглушечка</h1>
-                </motion.div>
-              )}
-            />
-            <Route path="/editor" component={() => <Editingpage />} />
-          </Switch>
-        </AnimatePresence>
-      </Router>
-    );
+    const { isDataLoaded } = this.state;
+    if (isDataLoaded) {
+      return (
+        <Router>
+          <Navigation />
+          <AnimatePresence>
+            <Switch>
+              <Route path="/" exact component={() => <Projectspage />} />
+              <Route path="/editor" component={() => <Editingpage />} />
+            </Switch>
+          </AnimatePresence>
+        </Router>
+      );
+    } else {
+      return (
+        <div className={"loadercontainer"}>
+          <Loader type="Triangle" color="#e2022e" height={250} width={250} />
+          Загрузка...
+        </div>
+      );
+    }
   }
 }
 

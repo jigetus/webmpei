@@ -11,7 +11,7 @@ class Link extends Component<ILink> {
   render() {
     const { title, to, icon } = this.props;
     return (
-      <NavLink to={to} activeClassName="active">
+      <NavLink to={to} activeClassName="active" exact>
         {icon}
         {title}
       </NavLink>

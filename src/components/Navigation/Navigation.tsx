@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { NavLink } from "react-router-dom";
 import Link from "./Link/Link";
 
 const editorIcon = (
@@ -42,14 +41,12 @@ class Navigation extends Component {
     return (
       <div className={"navigation"}>
         <div className="navwidth">
-          <NavLink to="/" activeClassName="active" exact>
-            <div className="logo">
-              <img src="/icons/logo.png" alt="" />
-            </div>
-          </NavLink>
+          <div className="logo">
+            <img src="/icons/logo.png" alt="" />
+          </div>
           <div className="helpspace" />
           <div className="menu">
-            <Link to={"/projects"} title={"Мои проекты"} icon={projectsIcon} />
+            <Link to={"/"} title={"Мои проекты"} icon={projectsIcon} />
             <Link to={"/editor"} title={"Редактор"} icon={editorIcon} />
             <Link to={"/settings"} title={"Настройки"} icon={settingsIcon} />
           </div>

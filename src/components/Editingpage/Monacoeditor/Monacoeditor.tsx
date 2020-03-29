@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import MonacoEditor from "react-monaco-editor";
-import test from "../../Utility/Tests";
+import test from "../../../utils/Tests";
 import Tabs from "./Tabs/Tabs";
 import Controls from "./Controls/Controls";
 import { connect } from "react-redux";
