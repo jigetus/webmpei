@@ -1,83 +1,68 @@
 [
     {
-    "filename": "lab1",
+    "filename": "лаба1",
     "filetype": "folder",
     "isFolder": true,
     "filedata": null,
+    "path": "user/лаба1",
     "children": [
-        {
-            "filename": "css",
-            "filetype": "folder",
-            "isFolder": true,
-            "filedata": null,
-            "children": [{
-                    "filename": "main.css",
-                    "filetype": "css",
-                    "isFolder": false,
-                    "filedata": "body {margin: 0, padding: 0",
-                    "children": null
-                }
-            ]
-        },
-        {
-            "filename": "scripts",
-            "filetype": "folder",
-            "isFolder": true,
-            "filedata": null,
-            "children": [{
-                "filename": "load.js",
-                "filetype": "javascript",
-                "isFolder": false,
-                "filedata": "document.getElementById('klek')",
-                "children": null
-            }]
-        },
         {
             "filename": "index.html",
             "filetype": "html",
             "isFolder": false,
-            "filedata": "<h1>Hello world</h1>",
+            "filedata": "<div>Hello world</div>",
+            "path": "user/лаб1/index.html",
+            "children": null
+        },        {
+            "filename": "style.css",
+            "filetype": "css",
+            "isFolder": false,
+            "filedata": "body {margin: 5px}",
+            "path": "user/лаб1/style.css",
+            "children": null
+        },        {
+            "filename": "script.js",
+            "filetype": "js",
+            "isFolder": false,
+            "filedata": "document.getElementById('click')",
+            "path": "user/лаб1/script.js",
             "children": null
         }
     ]
 }, {
-    "filename": "lab2",
+    "filename": "лаба2",
     "filetype": "folder",
     "isFolder": true,
     "filedata": null,
+    "path": "user/лаба2",
     "children": [
         {
-            "filename": "css2",
-            "filetype": "folder",
-            "isFolder": true,
-            "filedata": null,
-            "children": [{
-                    "filename": "main2.css",
-                    "filetype": "css",
-                    "isFolder": false,
-                    "filedata": "body {margin: 0, padding: 0",
-                    "children": null
-                }
-            ]
-        },
-        {
-            "filename": "scripts2",
-            "filetype": "folder",
-            "isFolder": true,
-            "filedata": null,
-            "children": [{
-                "filename": "load2.js",
-                "filetype": "javascript",
-                "isFolder": false,
-                "filedata": "document.getElementById('klek')",
-                "children": null
-            }]
-        },
-        {
-            "filename": "index.html",
+            "filename": "index2.html",
             "filetype": "html",
             "isFolder": false,
-            "filedata": "<h1>Hello world</h1>",
+            "filedata": "<div>Hello world</div>",
+            "path": "user/лаб2/index2.html",
+            "children": null
+        },        {
+            "filename": "style2.css",
+            "filetype": "css",
+            "isFolder": false,
+            "filedata": "body {margin: 5px}",
+            "path": "user/лаб2/style2.css",
+            "children": null
+        },        {
+            "filename": "script2.js",
+            "filetype": "js",
+            "isFolder": false,
+            "filedata": "document.getElementById('click')",
+            "path": "user/лаб2/script2.js",
+            "children": null
+        },{
+            "filename": "login.php",
+            "filetype": "php",
+            "isFolder": false,
+            "filedata": "<?php echo phpinfo(); ?>",
+            "path": "user/лаб2/login.php",
             "children": null
         }
     ]

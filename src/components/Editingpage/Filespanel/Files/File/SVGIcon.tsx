@@ -26,12 +26,10 @@ const getPath = (name: string) => {
       return (
         <>
           <path
-            fill="#FBC02D"
-            d="M10 4H4c-1.11 0-2 .89-2 2v12c0 1.097.903 2 2 2h16c1.097 0 2-.903 2-2V8a2 2 0 0 0-2-2h-8l-2-2z"
-          />
-          <path
-            fill="#FFFDE7"
-            d="M11.915 19.79h2.465v2.464h1.642v-4.107h-4.107zm2.465-6.571h-2.465v1.642h4.107v-4.107H14.38zm4.928 9.035h1.643V19.79h2.464v-1.643h-4.107zm1.643-9.035v-2.465h-1.643v4.107h4.107V13.22z"
+            d="m10 4h-6c-1.11 0-2 .89-2 2v12c0 1.097.903 2 2 2h16c1.097 0 2-.903 2-2v-10c0-1.11-.9-2-2-2h-8l-2-2z"
+            fill="#e57373"
+            fillRule={"nonzero"}
+            style={{ fill: "#039be5" }}
           />
         </>
       );
@@ -87,7 +85,7 @@ const SVGIcon = ({
     style={{ ...style, opacity: isVisible ? 1 : 0 }}
     className={className}
     xmlns="http://www.w3.org/2000/svg"
-    viewBox={name !== "close" ? "0 0 25 25" : "0 0 25 25"}
+    viewBox={name !== "close" ? "0 0 24 24" : "0 0 24 24"}
     xmlnsXlink="http://www.w3.org/1999/xlink"
   >
     {getPath(name)}

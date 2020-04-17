@@ -1,18 +1,41 @@
 import React, { Component } from "react";
 import File from "./File/File";
+import { AppState } from "../../../../redux";
+import { connect, ConnectedProps } from "react-redux";
+import { IFile } from "../../../../redux/Files/types";
 
-class Files extends Component {
+class Files extends Component<PropsFromRedux> {
+  displayRecursion(childern: any) {
+    return childern.map((item: IFile) => {
+      return <File file={item} key={item.path} />;
+    });
+  }
+
   render() {
+    const { activeProjectName } = this.props;
+    const { files } = this.props;
+    let activeFiles = null;
+    files.map((item: IFile) => {
+      if (item.filename === activeProjectName) {
+        activeFiles = item.children;
+      }
+      return null;
+    });
     return (
       <div className={"filescontainer"}>
-        <File level={0} name={"test.js"} type={"js"} />
-        <File level={1} name={"source.css"} type={"css"} />
-        <File level={2} name={"index.html"} type={"html"} />
-        <File level={3} name={"index.html"} type={"js"} />
-        <File level={3} name={"start.php"} type={"php"} />
+        {this.displayRecursion(activeFiles)}
       </div>
     );
   }
 }
 
-export default Files;
+const mapStateToProps = (state: AppState) => ({
+  files: state.files.files,
+  activeProjectName: state.editor.activeProjectName
+});
+
+const connector = connect(mapStateToProps, {});
+
+// @ts-ignore
+type PropsFromRedux = ConnectedProps<typeof connector>;
+export default connector(Files);

@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import Link from "./Link/Link";
 
 const editorIcon = (
@@ -36,24 +36,22 @@ const projectsIcon = (
   </svg>
 );
 
-class Navigation extends Component {
-  render() {
-    return (
-      <div className={"navigation"}>
-        <div className="navwidth">
-          <div className="logo">
-            <img src="/icons/logo.png" alt="" />
-          </div>
-          <div className="helpspace" />
-          <div className="menu">
-            <Link to={"/"} title={"Мои проекты"} icon={projectsIcon} />
-            <Link to={"/editor"} title={"Редактор"} icon={editorIcon} />
-            <Link to={"/settings"} title={"Настройки"} icon={settingsIcon} />
-          </div>
+const Navigation = () => {
+  return (
+    <div className={"navigation"}>
+      <div className="navwidth">
+        <div className="logo">
+          <img src="/icons/logo.png" alt="" />
+        </div>
+        <div className="helpspace" />
+        <div className="menu">
+          <Link to={"/"} title={"Мои проекты"} icon={projectsIcon} />
+          <Link to={"/editor"} title={"Редактор"} icon={editorIcon} />
+          <Link to={"/settings"} title={"Настройки"} icon={settingsIcon} />
         </div>
       </div>
-    );
-  }
-}
+    </div>
+  );
+};
 
 export default Navigation;

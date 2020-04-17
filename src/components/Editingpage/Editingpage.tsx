@@ -4,14 +4,13 @@ import Previewpanel from "./Previewpanel/Previewpanel";
 import SplitterLayout from "react-splitter-layout";
 import { connect, ConnectedProps } from "react-redux";
 import "react-splitter-layout/lib/index.css";
-import { motion } from "framer-motion";
-import pageTransition from "../../utils/Routeanimation";
 import Monacoeditor from "./Monacoeditor/Monacoeditor";
 import {
   changeFilebrowserWidth,
   changePreviewWidth
 } from "../../redux/Editor/actions";
 import { AppState } from "../../redux";
+import { withRouter } from "react-router-dom";
 
 interface IEditingpageState {
   filebrowserWidth: number;
@@ -20,22 +19,23 @@ interface IEditingpageState {
 class Editingpage extends Component<PropsFromRedux, IEditingpageState> {
   constructor(props: PropsFromRedux) {
     super(props);
-    const { filebrowserWidth, previewWidth } = this.props.editor;
+    const { filebrowserWidth, previewWidth } = this.props;
     this.state = {
       filebrowserWidth,
       previewWidth
     };
   }
   render() {
-    const { filebrowserWidth, previewWidth } = this.props.editor;
+    const { filebrowserWidth, previewWidth, activeProjectName } = this.props;
+    if (activeProjectName == null) {
+      return (
+        <div className={"container"}>
+          <h3>Сначала необходимо выбрать проект для редактирования.</h3>
+        </div>
+      );
+    }
     return (
-      <motion.div
-        className={"editing-container"}
-        initial="out"
-        animate="in"
-        exit="out"
-        variants={pageTransition}
-      >
+      <div className={"editing-container"}>
         <SplitterLayout
           primaryIndex={1}
           secondaryInitialSize={filebrowserWidth}
@@ -70,13 +70,15 @@ class Editingpage extends Component<PropsFromRedux, IEditingpageState> {
             <Previewpanel />
           </SplitterLayout>
         </SplitterLayout>
-      </motion.div>
+      </div>
     );
   }
 }
 
 const mapStateToProps = (state: AppState) => ({
-  editor: state.editor
+  filebrowserWidth: state.editor.filebrowserWidth,
+  previewWidth: state.editor.previewWidth,
+  activeProjectName: state.editor.activeProjectName
 });
 
 const connector = connect(mapStateToProps, {
@@ -87,4 +89,4 @@ const connector = connect(mapStateToProps, {
 // @ts-ignore
 type PropsFromRedux = ConnectedProps<typeof connector>;
 
-export default connector(Editingpage);
+export default connector(withRouter(Editingpage));

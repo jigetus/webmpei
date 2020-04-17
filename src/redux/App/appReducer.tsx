@@ -1,11 +1,11 @@
 import { Action } from "redux";
 
 const initialState = {
-  test: "1234"
+  isFilesLoaded: false
 };
 
 export interface IApp {
-  test: string;
+  isFilesLoaded: boolean;
 }
 export const appReducer = (state: IApp = initialState, action: Action) => {
   return state;

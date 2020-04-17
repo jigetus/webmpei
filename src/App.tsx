@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import Editingpage from "./components/Editingpage/Editingpage";
 import Navigation from "./components/Navigation/Navigation";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import { AnimatePresence } from "framer-motion";
 import { AppState } from "./redux";
 import { connect, ConnectedProps } from "react-redux";
 import {
@@ -50,28 +49,23 @@ class App extends Component<PropsFromRedux, IAppState> {
       return (
         <Router>
           <Navigation />
-          <AnimatePresence>
-            <Switch>
-              <Route path="/" exact component={() => <Projectspage />} />
-              <Route path="/editor" component={() => <Editingpage />} />
-            </Switch>
-          </AnimatePresence>
+          <Switch>
+            <Route path="/" exact component={() => <Projectspage />} />
+            <Route path="/editor" component={() => <Editingpage />} />
+          </Switch>
         </Router>
       );
-    } else {
-      return (
-        <div className={"loadercontainer"}>
-          <Loader type="Triangle" color="#e2022e" height={250} width={250} />
-          Загрузка...
-        </div>
-      );
     }
+    return (
+      <div className={"loadercontainer"}>
+        <Loader type="Triangle" color="#e2022e" height={250} width={250} />
+        Загрузка...
+      </div>
+    );
   }
 }
 
-const mapStateToProps = (state: AppState) => ({
-  state
-});
+const mapStateToProps = (state: AppState) => ({});
 
 const connector = connect(mapStateToProps, {
   fetchFilesPending,

@@ -1,26 +1,41 @@
 import React, { Component } from "react";
-import CSS from "csstype";
 import SVGIcon from "./SVGIcon";
+import { AppState } from "../../../../../redux";
+import { connect, ConnectedProps } from "react-redux";
+import { AddTab, SetTab } from "../../../../../redux/Editor/actions";
+import { IFile } from "../../../../../redux/Files/types";
 
-interface IFile {
-  type: string;
-  name: string;
-  level: number;
-  data?: Object;
+interface IFile1 {
+  file: IFile;
+  AddTab: Function;
+  SetTab: Function;
 }
 
-class Files extends Component<IFile> {
+class File extends Component<IFile1> {
   render() {
-    const { name, level, type } = this.props;
-    const css: CSS.Properties = {
-      paddingLeft: `${5 + level * 15}px`
-    };
+    const { filename, filetype } = this.props.file;
+    const { AddTab, SetTab } = this.props;
+
     return (
-      <div className={"file"} style={css}>
-        <SVGIcon name={type} /> <div>{name}</div>
+      <div
+        className={"file"}
+        onClick={() => {
+          AddTab(this.props.file);
+          SetTab(this.props.file);
+        }}
+      >
+        <SVGIcon name={filetype} />
+        <div>{filename}</div>
       </div>
     );
   }
 }
 
-export default Files;
+const mapStateToProps = (state: AppState) => ({});
+
+const connector = connect(mapStateToProps, { AddTab, SetTab });
+
+// @ts-ignore
+type PropsFromRedux = ConnectedProps<typeof connector>;
+
+export default connector(File);
