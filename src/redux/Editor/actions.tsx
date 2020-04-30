@@ -5,12 +5,11 @@ import {
   EDITINGPAGE_CHANGE_PREVIEW_WIDTH,
   EDITINGPAGE_CLEAR_TABS,
   EDITINGPAGE_CREATE_EDITOR,
-  EDITINGPAGE_EDIT_TAB,
   EDITINGPAGE_REMOVE_TAB,
   EDITINGPAGE_SET_TAB,
-  EditorActionTypes
+  EditorActionTypes,
+  ITab
 } from "./types";
-import { IFile } from "../Files/types";
 import IStandaloneCodeEditor from "react-monaco-editor/src";
 
 export function changeFilebrowserWidth(newwidth: number): EditorActionTypes {
@@ -34,17 +33,17 @@ export function changeActiveProject(projectname: string): EditorActionTypes {
   };
 }
 
-export function AddTab(file: IFile): EditorActionTypes {
+export function AddTab(tab: ITab): EditorActionTypes {
   return {
     type: EDITINGPAGE_ADD_TAB,
-    payload: file
+    payload: tab
   };
 }
 
-export function RemoveTab(file: IFile): EditorActionTypes {
+export function RemoveTab(path: string): EditorActionTypes {
   return {
     type: EDITINGPAGE_REMOVE_TAB,
-    payload: file
+    payload: path
   };
 }
 export function ClearTabs(): EditorActionTypes {
@@ -54,21 +53,14 @@ export function ClearTabs(): EditorActionTypes {
   };
 }
 
-export function SetTab(file: IFile): EditorActionTypes {
+export function SetTab(path: string): EditorActionTypes {
   return {
     type: EDITINGPAGE_SET_TAB,
-    payload: file
+    payload: path
   };
 }
 
-export function EditTab(string: string): EditorActionTypes {
-  return {
-    type: EDITINGPAGE_EDIT_TAB,
-    payload: string
-  };
-}
-
-export function CreateEditor(editor: IStandaloneCodeEditor) {
+export function CreateEditor(editor: IStandaloneCodeEditor): EditorActionTypes {
   return {
     type: EDITINGPAGE_CREATE_EDITOR,
     payload: editor

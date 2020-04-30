@@ -3,8 +3,12 @@ import {
   FETCH_FILES_ERROR,
   FETCH_FILES_PENDING,
   FETCH_FILES_SUCCESS,
-  FilesActionsType
+  FilesActionsType,
+  IFile,
+  SAVE_OPEN_TABS
 } from "./types";
+import { ITab } from "../Editor/types";
+import { toast } from "react-toastify";
 
 const initialState: IFilesState = {
   pending: false,
@@ -22,12 +26,14 @@ export function filesReducer(
         ...state,
         pending: true
       };
+
     case FETCH_FILES_SUCCESS:
       return {
         ...state,
         pending: false,
         files: action.payload
       };
+
     case FETCH_FILES_ERROR:
       alert(action.error);
       return {
@@ -35,6 +41,44 @@ export function filesReducer(
         pending: false,
         error: action.error
       };
+
+    case SAVE_OPEN_TABS:
+      const activeprojectname = action.payload.activeprojectname;
+      let activeFiles: Array<IFile> = [];
+      state.files.map((item: IFile) => {
+        if (item.filename === activeprojectname) {
+          activeFiles = item.children;
+        }
+        return null;
+      });
+      action.payload.tabs.map(function(item: ITab) {
+        let tmp = item.file.path;
+        activeFiles.map((file: IFile) => {
+          if (file.path === tmp) {
+            // @ts-ignore
+            file.filedata = item.model.getValue();
+          }
+          return file;
+        });
+        return item;
+      });
+      const tmp2 = state.files.map((item: IFile) => {
+        if (item.filename === activeprojectname) {
+          item.children = activeFiles;
+        }
+        return item;
+      });
+      toast.info("Все вкладки сохранены", {
+        position: "bottom-right",
+        autoClose: 1800,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined
+      });
+      return { ...state, files: tmp2 };
+
     default:
       return state;
   }

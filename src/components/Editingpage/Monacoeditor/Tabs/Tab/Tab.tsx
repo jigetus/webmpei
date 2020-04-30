@@ -3,15 +3,12 @@ import SVGIcon from "../../../Filespanel/Files/File/SVGIcon";
 import { AppState } from "../../../../../redux";
 import { connect } from "react-redux";
 import { RemoveTab, SetTab } from "../../../../../redux/Editor/actions";
-import { IFile } from "../../../../../redux/Files/types";
-import { IEditorState } from "../../../../../redux/Editor/types";
+import { ITab } from "../../../../../redux/Editor/types";
 
 interface ITabProps {
-  file: IFile;
+  data: ITab;
   RemoveTab: Function;
   SetTab: Function;
-  activetab: IFile;
-  editor: IEditorState;
 }
 
 class Tab extends Component<ITabProps> {
@@ -19,23 +16,22 @@ class Tab extends Component<ITabProps> {
     isHovered: false
   };
   render() {
-    const { filename, filetype, path } = this.props.file;
+    const { filename, filetype, path } = this.props.data.file;
     const { RemoveTab } = this.props;
-    const { activetab } = this.props;
-    // @ts-ignore
-    const isActive = activetab.path === path;
+    const { isActive } = this.props.data;
+
     return (
       <div
         className={isActive ? "tab active_tab noselect" : "tab noselect"}
         onMouseEnter={() => this.setState({ isHovered: true })}
         onMouseLeave={() => this.setState({ isHovered: false })}
         onClick={() => {
-          this.props.SetTab(this.props.file);
+          if (!isActive) this.props.SetTab(path);
         }}
         onMouseDown={event => {
           // @ts-ignore
           if (event.button === 1) {
-            RemoveTab(this.props.file);
+            RemoveTab(path);
           }
         }}
       >
@@ -45,7 +41,7 @@ class Tab extends Component<ITabProps> {
           className="close-container"
           onClick={event => {
             event.stopPropagation();
-            RemoveTab(this.props.file);
+            RemoveTab(path);
           }}
         >
           <SVGIcon name={"close"} isVisible={true} />
@@ -55,9 +51,7 @@ class Tab extends Component<ITabProps> {
   }
 }
 
-const mapStateToProps = (state: AppState) => ({
-  activetab: state.editor.activetab
-});
+const mapStateToProps = (state: AppState) => ({ tabs: state.editor.tabs });
 
 const connector = connect(mapStateToProps, { RemoveTab, SetTab });
 

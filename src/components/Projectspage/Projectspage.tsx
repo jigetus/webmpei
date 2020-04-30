@@ -2,10 +2,6 @@ import React, { Component } from "react";
 import { AppState } from "../../redux";
 import { connect, ConnectedProps } from "react-redux";
 import { IFile } from "../../redux/Files/types";
-
-import { ThemeProvider } from "@material-ui/styles";
-import theme from "../../utils/Colors";
-import Button from "@material-ui/core/Button";
 import { changeActiveProject, ClearTabs } from "../../redux/Editor/actions";
 import { withRouter } from "react-router-dom";
 import { edit } from "react-icons-kit/typicons/edit";
@@ -14,6 +10,7 @@ import { ic_delete } from "react-icons-kit/md/ic_delete";
 
 import { Icon } from "react-icons-kit";
 import ReactTooltip from "react-tooltip";
+import AddProject from "./AddProject/AddProject";
 
 interface ProjectspageSTATE {
   selectedProject: string | null;
@@ -24,15 +21,30 @@ class Projectspage extends Component<PropsFromRedux, ProjectspageSTATE> {
   };
   renderProjects = () => {
     const { files } = this.props;
+    if (files.length === 0)
+      return (
+        <h4
+          style={{
+            margin: "0 auto",
+            paddingTop: "100px",
+            color: "grey"
+          }}
+        >
+          У вас еще нет проектов 😟
+        </h4>
+      );
     return files.map((item: IFile) => (
       <div
         key={item.path}
         className={
           this.state.selectedProject === item.filename
-            ? "projectcard projectcard_active"
-            : "projectcard"
+            ? "projectcard projectcard_active noselect"
+            : "projectcard noselect"
         }
-        onClick={() => this.setState({ selectedProject: item.filename })}
+        onClick={e => {
+          e.stopPropagation();
+          this.setState({ selectedProject: item.filename });
+        }}
       >
         <img
           src="https://findicons.com/files/icons/766/base_software/128/folderopened_yellow.png"
@@ -54,16 +66,10 @@ class Projectspage extends Component<PropsFromRedux, ProjectspageSTATE> {
     const { changeActiveProject, ClearTabs } = this.props;
     return (
       <div className={"container projectscontainer"}>
-        <div className="projectsbuttons">
-          <ThemeProvider theme={theme}>
-            <Button variant="contained" color="primary">
-              Новый проект
-            </Button>
-          </ThemeProvider>
-        </div>
+        <AddProject />
         <div className={"window"}>
           <div className="top">
-            <div className="title">Мои проекты</div>
+            <div className="title noselect">Мои проекты</div>
             {this.state.selectedProject != null ? (
               <div className="projectsbuttons2">
                 <Icon
@@ -91,7 +97,12 @@ class Projectspage extends Component<PropsFromRedux, ProjectspageSTATE> {
               </div>
             ) : null}
           </div>
-          <div className="windowcontent">{this.renderProjects()}</div>
+          <div
+            className="windowcontent"
+            onClick={() => this.setState({ selectedProject: null })}
+          >
+            {this.renderProjects()}
+          </div>
         </div>
         <ReactTooltip effect={"solid"} place={"bottom"} />
       </div>

@@ -4,14 +4,15 @@ import Navigation from "./components/Navigation/Navigation";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { AppState } from "./redux";
 import { connect, ConnectedProps } from "react-redux";
-import {
-  fetchFilesError,
-  fetchFilesPending,
-  fetchFilesSuccess
-} from "./redux/Files/actions";
+import { fetchFilesSuccess } from "./redux/Files/actions";
 import Projectspage from "./components/Projectspage/Projectspage";
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
-import Loader from "react-loader-spinner";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.min.css";
+import "react-contexify/dist/ReactContexify.min.css";
+import Loginpage from "./components/Loginpage/Loginpage";
+import MyLoader from "./components/Utility/Loader";
+import { SetUserInfo, UserLogged } from "./redux/App/actions";
 
 interface IAppState {
   isDataLoaded: boolean;
@@ -21,30 +22,33 @@ class App extends Component<PropsFromRedux, IAppState> {
     isDataLoaded: false
   };
   componentDidMount(): void {
+    const { UserLogged, fetchFilesSuccess, SetUserInfo } = this.props;
     this.setState({ isDataLoaded: false });
-    const {
-      fetchFilesError,
-      fetchFilesPending,
-      fetchFilesSuccess
-    } = this.props;
-    fetchFilesPending();
-    fetch("/userfiles.json")
+    fetch("api/checklogin.php")
       .then(res => res.json())
       .then(res => {
-        if (res.error) {
-          throw res.error;
+        if (res.code === 400) {
+          this.setState({ isDataLoaded: true });
         }
-        fetchFilesSuccess(res);
-        this.setState({ isDataLoaded: true });
-        return res;
+        if (res.code === 200) {
+          fetchFilesSuccess(res.data.files);
+          SetUserInfo(res.data.user_info);
+          UserLogged();
+          this.setState({ isDataLoaded: true });
+        }
       })
-      .catch(error => {
-        fetchFilesError(error);
-      });
+      .catch(error => {});
   }
 
   render() {
     const { isDataLoaded } = this.state;
+    const { isLogged } = this.props;
+    if (!isDataLoaded) {
+      return <MyLoader />;
+    }
+    if (!isLogged) {
+      return <Loginpage />;
+    }
     if (isDataLoaded) {
       return (
         <Router>
@@ -53,24 +57,30 @@ class App extends Component<PropsFromRedux, IAppState> {
             <Route path="/" exact component={() => <Projectspage />} />
             <Route path="/editor" component={() => <Editingpage />} />
           </Switch>
+          <ToastContainer
+            position="bottom-right"
+            autoClose={5000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            toastClassName="dark-toast"
+          />
         </Router>
       );
     }
-    return (
-      <div className={"loadercontainer"}>
-        <Loader type="Triangle" color="#e2022e" height={250} width={250} />
-        Загрузка...
-      </div>
-    );
   }
 }
 
-const mapStateToProps = (state: AppState) => ({});
+const mapStateToProps = (state: AppState) => ({ isLogged: state.app.isLogged });
 
 const connector = connect(mapStateToProps, {
-  fetchFilesPending,
-  fetchFilesError,
-  fetchFilesSuccess
+  fetchFilesSuccess,
+  UserLogged,
+  SetUserInfo
 });
 
 // @ts-ignore

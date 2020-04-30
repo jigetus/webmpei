@@ -7,6 +7,7 @@ $white_col: #fff;
 $greybgc_col: #ffffff;
 $link_col: #26282b;
 $linkhover_col: #e2022e;
+$menu_width: 90%;
 html {
   height: 100%;
 }
@@ -17,6 +18,7 @@ body {
   height: 100%;
   box-sizing: border-box;
   background-color: $greybgc_col;
+  -webkit-font-smoothing: subpixel-antialiased;
 }
 .container {
   width: $container;
@@ -37,11 +39,13 @@ body {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
-  border-bottom: 1px solid #cccccc;
   box-sizing: border-box;
   background-color: $white_col;
+  box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14),
+    0 1px 10px 0 rgba(0, 0, 0, 0.12);
+
   .navwidth {
-    min-width: $container;
+    min-width: $menu_width;
     margin: 0 auto;
     display: flex;
     flex-direction: row;
@@ -59,17 +63,20 @@ body {
     flex-direction: row;
     flex-wrap: nowrap;
     box-sizing: border-box;
+    cursor: pointer;
 
     a {
       text-decoration: none;
       display: flex;
-      flex-direction: row;
+      flex-direction: column;
       flex-wrap: nowrap;
-      align-items: center;
+      justify-content: center;
+      text-align: center;
       font-weight: bold;
-      font-size: 14px;
+      font-size: 11px;
+      text-transform: uppercase;
       color: $link_col;
-      padding: 0 15px;
+      margin: 0 15px;
       transition: all 0.4s ease;
       white-space: nowrap;
       &.active {
@@ -89,8 +96,8 @@ body {
         }
       }
       svg {
-        width: 28px;
         padding: 4px;
+        width: 28px;
         box-sizing: border-box;
         cursor: pointer;
         path {
@@ -116,8 +123,26 @@ body {
   align-items: center;
   position: relative;
   overflow: hidden;
-  h3 {
-    margin: 8px 0;
+  .filescontrols {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 8px 0;
+    width: 100%;
+    align-items: center;
+    h3 {
+      margin: 0;
+      padding: 0 0 0 20px;
+      font-weight: normal;
+    }
+    i {
+      cursor: pointer;
+      color: grey;
+      padding-right: 8px;
+      &:hover {
+        color: #e2022e;
+      }
+    }
   }
 }
 .editorpanel {
@@ -137,6 +162,7 @@ body {
   display: flex;
   flex-direction: row;
   align-items: flex-end;
+  padding-bottom: 2px;
 }
 
 .tab {
@@ -147,19 +173,22 @@ body {
   justify-content: center;
   box-sizing: border-box;
   border: 1px solid #bababa;
-  border-bottom: none;
+  border-bottom: 3px solid transparent;
   margin-right: 2px;
   cursor: pointer;
   background-color: #f4f4f4;
 
   &:hover {
-    background-color: lightgrey;
+    background-color: rgba(255, 0, 0, 0.14);
   }
   svg {
     width: 20px;
     margin-right: 5px;
   }
   .close-container {
+    &:hover {
+      transform: scale(1.3);
+    }
     svg {
       margin-right: 0;
       margin-top: 4px;
@@ -169,11 +198,10 @@ body {
     font-size: 14px;
     margin-right: 12px;
   }
-  .close {
-  }
 }
 .active_tab {
   background-color: lightgrey;
+  border-bottom: 3px solid $linkhover_col;
 }
 .controls {
   min-width: 200px;
@@ -281,6 +309,8 @@ body {
       flex-direction: row;
       flex-wrap: wrap;
       padding: 10px;
+      height: calc(100% - 35px);
+      box-sizing: border-box;
     }
     .projectcard {
       min-width: 80px;
@@ -323,4 +353,10 @@ body {
   -ms-user-select: none; /* Internet Explorer/Edge */
   user-select: none; /* Non-prefixed version, currently
                                   supported by Chrome, Opera and Firefox */
+}
+.Toastify__toast--info {
+  background: $linkhover_col;
+  .Toastify__toast-body {
+    //color: $link_col;
+  }
 }

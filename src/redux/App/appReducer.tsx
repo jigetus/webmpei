@@ -1,12 +1,25 @@
-import { Action } from "redux";
+import {
+  APP_SET_USER_INFO,
+  APP_USER_LOGGED,
+  AppActionTypes,
+  IApp
+} from "./types";
 
 const initialState = {
-  isFilesLoaded: false
+  isLogged: false,
+  user: null
 };
 
-export interface IApp {
-  isFilesLoaded: boolean;
-}
-export const appReducer = (state: IApp = initialState, action: Action) => {
+export const appReducer = (
+  state: IApp = initialState,
+  action: AppActionTypes
+): IApp => {
+  switch (action.type) {
+    case APP_USER_LOGGED:
+      return { ...state, isLogged: true };
+
+    case APP_SET_USER_INFO:
+      return { ...state, user: action.payload };
+  }
   return state;
 };

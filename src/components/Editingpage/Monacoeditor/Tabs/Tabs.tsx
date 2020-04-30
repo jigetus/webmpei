@@ -2,15 +2,15 @@ import React, { Component } from "react";
 import Tab from "./Tab/Tab";
 import { AppState } from "../../../../redux";
 import { connect, ConnectedProps } from "react-redux";
-import { IFile } from "../../../../redux/Files/types";
+import { ITab } from "../../../../redux/Editor/types";
 
 class Tabs extends Component<PropsFromRedux> {
   render() {
     const { tabs } = this.props;
     return (
       <div className={"tabs"}>
-        {tabs.map((item: IFile) => (
-          <Tab file={item} key={item.path} />
+        {tabs.map((item: ITab) => (
+          <Tab data={item} key={item.file.path} />
         ))}
       </div>
     );

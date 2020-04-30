@@ -1,21 +1,32 @@
 <component name="ProjectDictionaryState">
   <dictionary name="Алексей">
     <words>
+      <w>activeprojectname</w>
       <w>activetab</w>
+      <w>bmpei</w>
+      <w>checklogin</w>
       <w>defaultvalue</w>
       <w>editormodels</w>
+      <w>editorvisible</w>
+      <w>errortext</w>
+      <w>filescontrols</w>
       <w>fullpath</w>
+      <w>groupid</w>
+      <w>istabsnull</w>
       <w>leftmenu</w>
       <w>loadercontainer</w>
+      <w>loginpage</w>
       <w>noconflict</w>
       <w>noselect</w>
       <w>projectcard</w>
+      <w>projectmodal</w>
       <w>projectsbuttons</w>
       <w>projectscontainer</w>
       <w>projectspage</w>
       <w>tabbar</w>
       <w>teststring</w>
       <w>userfiles</w>
+      <w>viewstate</w>
       <w>windowcontent</w>
     </words>
   </dictionary>

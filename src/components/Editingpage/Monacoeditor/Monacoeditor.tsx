@@ -4,8 +4,7 @@ import Tabs from "./Tabs/Tabs";
 import Controls from "./Controls/Controls";
 import { connect, ConnectedProps } from "react-redux";
 import { AppState } from "../../../redux";
-// import IStandaloneCodeEditor from "react-monaco-editor/src";
-import { CreateEditor, EditTab } from "../../../redux/Editor/actions";
+import { CreateEditor } from "../../../redux/Editor/actions";
 
 const options = {
   // selectOnLineNumbers: true,
@@ -22,55 +21,46 @@ const options = {
   verticalSliderSize: 0
 };
 class Monacoeditor extends Component<PropsFromRedux> {
-  // editor: IStandaloneCodeEditor | object = {};
   editorDidMount = (editor: any, monaco: any) => {
-    console.log("editordidmount");
-    // this.props.CreateEditor(monaco.editor);
-    // console.log(monaco.editor);
-    // editor.setValue("testings....");
-    // editor.setValue("new value");
-    // editor.focus();
+    this.props.CreateEditor(editor);
+    editor.setModel(null);
   };
 
   render() {
-    const { activetab, EditTab } = this.props;
-    return (
-      <>
-        <div className={"TabsAndControls"}>
-          <Tabs />
-          <Controls />
-        </div>
-        <div className={"editorpanel"}>
-          {activetab != null ? (
+    const isVisible = true;
+    if (isVisible) {
+      return (
+        <>
+          <div className={"TabsAndControls"}>
+            <Tabs />
+            <Controls />
+          </div>
+          <div className={"editorpanel"}>
             <MonacoEditor
               width="100%"
               height="calc(100% - 8px)"
-              language={
-                activetab.filetype === "js" ? "javascript" : activetab.filetype
-              }
-              value={activetab.filedata}
+              language={"javascript"}
+              value={""}
               editorWillMount={editor => {}}
               onChange={text => {
-                EditTab(text);
+                // EditTab(text);
               }}
               options={options}
               editorDidMount={this.editorDidMount}
               ref="monaco"
             />
-          ) : (
-            <h3>Выберите файл для редактирования</h3>
-          )}
-        </div>
-      </>
-    );
+          </div>
+        </>
+      );
+    } else {
+      return <h3>Выберите файл для редактирования</h3>;
+    }
   }
 }
 
-const mapStateToProps = (state: AppState) => ({
-  activetab: state.editor.activetab
-});
+const mapStateToProps = (state: AppState) => ({});
 
-const connector = connect(mapStateToProps, { CreateEditor, EditTab });
+const connector = connect(mapStateToProps, { CreateEditor });
 
 // @ts-ignore
 type PropsFromRedux = ConnectedProps<typeof connector>;

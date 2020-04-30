@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
+import Icon from "react-icons-kit";
 
 interface ILink {
   title: String;
@@ -12,7 +13,7 @@ class Link extends Component<ILink> {
     const { title, to, icon } = this.props;
     return (
       <NavLink to={to} activeClassName="active" exact>
-        {icon}
+        <Icon icon={icon} size={32} />
         {title}
       </NavLink>
     );
