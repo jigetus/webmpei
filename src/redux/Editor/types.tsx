@@ -13,7 +13,11 @@ export const EDITINGPAGE_REMOVE_TAB = "EDITINGPAGE_REMOVE_TAB";
 export const EDITINGPAGE_CLEAR_TABS = "EDITINGPAGE_CLEAR_TABS";
 export const EDITINGPAGE_SET_TAB = "EDITINGPAGE_SET_TAB";
 export const EDITINGPAGE_CREATE_EDITOR = "EDITINGPAGE_CREATE_EDITOR";
-export const EDITINGPAGE_SAVE_OPEN_TABS = "EDITINGPAGE_SAVE_OPEN_TABS";
+export const EDITINGPAGE_SET_PREVIEW_VISIBLE =
+  "EDITINGPAGE_SET_PREVIEW_VISIBLE";
+export const EDITINGPAGE_SET_PREVIEW_RESIZE = "EDITINGPAGE_SET_PREVIEW_RESIZE";
+export const EDITINGPAGE_SET_PREVIEW_PATH = "EDITINGPAGE_SET_PREVIEW_PATH";
+export const EDITINGPAGE_RESTORE_ACTIVE_TAB = "EDITINGPAGE_RESTORE_ACTIVE_TAB";
 
 export interface ITab {
   file: IFile;
@@ -28,6 +32,9 @@ export interface IEditorState {
   activeProjectName: string | null;
   tabs: Array<ITab>;
   monaco: IStandaloneCodeEditor | {};
+  preview_visible: boolean;
+  preview_resize: boolean;
+  preview_path: string | null;
 }
 interface ChangeFileBrowserWidth {
   type: typeof EDITINGPAGE_CHANGE_FILEBROWSER_WIDTH;
@@ -66,6 +73,23 @@ interface CreateEditor {
   payload: IStandaloneCodeEditor;
 }
 
+interface SetPreviewVisible {
+  type: typeof EDITINGPAGE_SET_PREVIEW_VISIBLE;
+  payload: boolean;
+}
+interface SetPreviewResize {
+  type: typeof EDITINGPAGE_SET_PREVIEW_RESIZE;
+  payload: boolean;
+}
+interface SetPreviewPath {
+  type: typeof EDITINGPAGE_SET_PREVIEW_PATH;
+  payload: string | null;
+}
+interface RestoreActiveTab {
+  type: typeof EDITINGPAGE_RESTORE_ACTIVE_TAB;
+  payload: null;
+}
+
 export type EditorActionTypes =
   | ChangeFileBrowserWidth
   | ChangePreviewWidth
@@ -74,4 +98,8 @@ export type EditorActionTypes =
   | RemoveTab
   | ClearTabs
   | SetTab
-  | CreateEditor;
+  | CreateEditor
+  | SetPreviewVisible
+  | SetPreviewResize
+  | SetPreviewPath
+  | RestoreActiveTab;

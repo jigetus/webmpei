@@ -12,7 +12,7 @@ import { connect, ConnectedProps } from "react-redux";
 
 class User extends Component<PropsFromRedux> {
   render() {
-    const { name, last_name } = this.props.user;
+    const { name, last_name, middle_name } = this.props.user;
     return (
       <PopupState variant="popover" popupId="demo-popup-popover">
         {popupState => (
@@ -20,7 +20,8 @@ class User extends Component<PropsFromRedux> {
             <ThemeProvider theme={theme2}>
               <a {...bindTrigger(popupState)}>
                 <Icon icon={user} size={32} />
-                {name} {last_name}
+                {last_name} {name[0]}.
+                {middle_name.length !== 0 ? middle_name[0] + "." : ""}
               </a>
               <Popover
                 {...bindPopover(popupState)}
@@ -34,6 +35,16 @@ class User extends Component<PropsFromRedux> {
                 }}
               >
                 <Box p={2}>
+                  <Button
+                    color="secondary"
+                    onClick={event => {
+                      fetch("api/abortses.php");
+                      window.location.reload();
+                    }}
+                  >
+                    Сменить пароль
+                  </Button>
+                  <br />
                   <Button
                     color="secondary"
                     onClick={event => {

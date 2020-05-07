@@ -7,10 +7,14 @@ import { withRouter } from "react-router-dom";
 import { edit } from "react-icons-kit/typicons/edit";
 import { pen } from "react-icons-kit/typicons/pen";
 import { ic_delete } from "react-icons-kit/md/ic_delete";
+import { download } from "react-icons-kit/fa/download";
 
 import { Icon } from "react-icons-kit";
 import ReactTooltip from "react-tooltip";
 import AddProject from "./AddProject/AddProject";
+import postData from "../../utils/functions";
+import { toast } from "react-toastify";
+import { fetchFilesSuccess } from "../../redux/Files/actions";
 
 interface ProjectspageSTATE {
   selectedProject: string | null;
@@ -30,7 +34,10 @@ class Projectspage extends Component<PropsFromRedux, ProjectspageSTATE> {
             color: "grey"
           }}
         >
-          У вас еще нет проектов 😟
+          У вас еще нет проектов{" "}
+          <span role={"img"} aria-label={"sad"}>
+            😟
+          </span>
         </h4>
       );
     return files.map((item: IFile) => (
@@ -50,6 +57,7 @@ class Projectspage extends Component<PropsFromRedux, ProjectspageSTATE> {
           src="https://findicons.com/files/icons/766/base_software/128/folderopened_yellow.png"
           alt=""
         />
+        {/*<Icon icon={listAlt} size={32} style={{ color: "lightgrey" }} />*/}
         <span>{item.filename}</span>
       </div>
     ));
@@ -61,6 +69,78 @@ class Projectspage extends Component<PropsFromRedux, ProjectspageSTATE> {
   ): void {
     ReactTooltip.rebuild();
   }
+  deleteHandle = () => {
+    const request = {
+      operation: "delete",
+      projectname: this.state.selectedProject
+    };
+    if (
+      window.confirm(
+        `Вы действительно хотите удалить проект "${this.state.selectedProject}"?`
+      )
+    ) {
+      postData("api/projectsoperations.php", request).then(res => {
+        if (this.state.selectedProject === this.props.activeProjectName) {
+          this.props.changeActiveProject(null);
+          this.props.ClearTabs();
+        }
+        if (res.code === 200) {
+          toast.info(res.data.message);
+          this.props.fetchFilesSuccess(res.data.files);
+          this.setState({ selectedProject: null });
+        } else {
+          toast.error(res.data);
+        }
+      });
+    }
+  };
+  downloadHandle = () => {
+    const request = {
+      operation: "download",
+      projectname: this.state.selectedProject
+    };
+    postData("api/projectsoperations.php", request, true).then(res => {
+      res.blob().then((blob: Blob) => {
+        let url = window.URL.createObjectURL(blob);
+        let a = document.createElement("a");
+        a.href = url;
+        a.download = `${this.state.selectedProject}.zip`;
+        a.click();
+      });
+    });
+  };
+
+  renameHandle = () => {
+    const { selectedProject } = this.state;
+    const new_name = window.prompt(
+      "Введите новое имя проекта:",
+      selectedProject != null ? selectedProject : ""
+    );
+    if (new_name === null) {
+      return false;
+    } else {
+      if (new_name === this.state.selectedProject) return false;
+      if (this.state.selectedProject === this.props.activeProjectName) {
+        this.props.changeActiveProject(null);
+        this.props.ClearTabs();
+      }
+      const request = {
+        operation: "rename",
+        projectname: this.state.selectedProject,
+        newname: new_name
+      };
+      postData("api/projectsoperations.php", request).then(res => {
+        if (res.code === 200) {
+          this.props.fetchFilesSuccess(res.data.files);
+          this.setState({ selectedProject: null });
+          toast.info(res.data.message);
+        }
+        if (res.code === 400) {
+          toast.error(res.data.message);
+        }
+      });
+    }
+  };
 
   render() {
     const { changeActiveProject, ClearTabs } = this.props;
@@ -86,13 +166,19 @@ class Projectspage extends Component<PropsFromRedux, ProjectspageSTATE> {
                   icon={pen}
                   size={24}
                   data-tip={"Переименовать"}
-                  onClick={() => {}}
+                  onClick={this.renameHandle}
                 />
                 <Icon
                   icon={ic_delete}
                   size={24}
                   data-tip={"Удалить"}
-                  onClick={() => {}}
+                  onClick={this.deleteHandle}
+                />
+                <Icon
+                  icon={download}
+                  size={24}
+                  data-tip={"Скачать проект"}
+                  onClick={this.downloadHandle}
                 />
               </div>
             ) : null}
@@ -111,10 +197,15 @@ class Projectspage extends Component<PropsFromRedux, ProjectspageSTATE> {
 }
 
 const mapStateToProps = (state: AppState) => ({
-  files: state.files.files
+  files: state.files.files,
+  activeProjectName: state.editor.activeProjectName
 });
 
-const connector = connect(mapStateToProps, { changeActiveProject, ClearTabs });
+const connector = connect(mapStateToProps, {
+  changeActiveProject,
+  ClearTabs,
+  fetchFilesSuccess
+});
 
 // @ts-ignore
 type PropsFromRedux = ConnectedProps<typeof connector>;

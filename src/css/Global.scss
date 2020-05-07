@@ -5,7 +5,7 @@ $container: 70%;
 //colors
 $white_col: #fff;
 $greybgc_col: #ffffff;
-$link_col: #26282b;
+$link_col: #000000;
 $linkhover_col: #e2022e;
 $menu_width: 90%;
 html {
@@ -18,6 +18,7 @@ body {
   height: 100%;
   box-sizing: border-box;
   background-color: $greybgc_col;
+  color: #111;
   -webkit-font-smoothing: subpixel-antialiased;
 }
 .container {
@@ -77,7 +78,8 @@ body {
       text-transform: uppercase;
       color: $link_col;
       margin: 0 15px;
-      transition: all 0.4s ease;
+      //transition: all 1s ease;
+      //letter-spacing: 1px;
       white-space: nowrap;
       &.active {
         color: $linkhover_col;
@@ -239,8 +241,11 @@ body {
 }
 
 .splitter-layout > .layout-splitter {
-  width: 2px;
-  background-color: #d4d4d4;
+  width: 12px;
+  //background-image: url(/images/divider.png);
+  //background-repeat: no-repeat;
+  //
+  //background-position: center;
 }
 .layout-pane .layout-pane-primary {
   width: 100%;
@@ -289,7 +294,7 @@ body {
       }
       .projectsbuttons2 {
         position: absolute;
-        left: 86%;
+        left: 82%;
         top: 5px;
         display: flex;
         flex-direction: row;
@@ -359,4 +364,14 @@ body {
   .Toastify__toast-body {
     //color: $link_col;
   }
+}
+
+.iframe_preview {
+  border: 0px solid #c3c3c3;
+}
+.preview_guide_image {
+  width: 215px;
+  margin-top: 10px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
 }

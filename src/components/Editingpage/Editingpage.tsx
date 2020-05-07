@@ -7,10 +7,13 @@ import "react-splitter-layout/lib/index.css";
 import Monacoeditor from "./Monacoeditor/Monacoeditor";
 import {
   changeFilebrowserWidth,
-  changePreviewWidth
+  changePreviewWidth,
+  RestoreActiveTab,
+  SetPreviewResize
 } from "../../redux/Editor/actions";
 import { AppState } from "../../redux";
 import { withRouter } from "react-router-dom";
+import ReactTooltip from "react-tooltip";
 
 interface IEditingpageState {
   filebrowserWidth: number;
@@ -25,15 +28,40 @@ class Editingpage extends Component<PropsFromRedux, IEditingpageState> {
       previewWidth
     };
   }
+  componentDidMount(): void {
+    ReactTooltip.hide();
+    const { tabs, RestoreActiveTab } = this.props;
+    if (tabs.length !== 0) {
+      RestoreActiveTab();
+    }
+  }
+
   render() {
-    const { filebrowserWidth, previewWidth, activeProjectName } = this.props;
-    if (activeProjectName == null) {
+    const {
+      filebrowserWidth,
+      previewWidth,
+      activeProjectName,
+      preview_visible,
+      SetPreviewResize
+    } = this.props;
+    if (activeProjectName === null) {
       return (
-        <div className={"container"}>
-          <h3>Сначала необходимо выбрать проект для редактирования.</h3>
+        <div
+          className={"container"}
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            height: "100%"
+          }}
+        >
+          <h3 style={{ color: "grey" }}>
+            Сначала необходимо выбрать проект для редактирования.
+          </h3>
         </div>
       );
     }
+
     return (
       <div className={"editing-container"}>
         <SplitterLayout
@@ -54,22 +82,26 @@ class Editingpage extends Component<PropsFromRedux, IEditingpageState> {
               this.setState({ previewWidth: size });
             }}
             onDragEnd={() => {
+              SetPreviewResize(false);
               window.dispatchEvent(new Event("resize"));
               this.props.changePreviewWidth(this.state.previewWidth);
+            }}
+            onDragStart={() => {
+              SetPreviewResize(true);
             }}
           >
             <SplitterLayout
               vertical
-              onSecondaryPaneSizeChange={(size: number) => {}}
               onDragEnd={() => {
                 window.dispatchEvent(new Event("resize"));
               }}
             >
               <Monacoeditor />
             </SplitterLayout>
-            <Previewpanel />
+            {preview_visible ? <Previewpanel /> : null}
           </SplitterLayout>
         </SplitterLayout>
+        <ReactTooltip effect={"solid"} place={"bottom"} />
       </div>
     );
   }
@@ -78,12 +110,16 @@ class Editingpage extends Component<PropsFromRedux, IEditingpageState> {
 const mapStateToProps = (state: AppState) => ({
   filebrowserWidth: state.editor.filebrowserWidth,
   previewWidth: state.editor.previewWidth,
-  activeProjectName: state.editor.activeProjectName
+  activeProjectName: state.editor.activeProjectName,
+  preview_visible: state.editor.preview_visible,
+  tabs: state.editor.tabs
 });
 
 const connector = connect(mapStateToProps, {
   changeFilebrowserWidth,
-  changePreviewWidth
+  changePreviewWidth,
+  SetPreviewResize,
+  RestoreActiveTab
 });
 
 // @ts-ignore

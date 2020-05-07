@@ -1,3 +1,3 @@
 git add .
-git commit -m "save progress"
+git commit -m "release"
 git push origin master

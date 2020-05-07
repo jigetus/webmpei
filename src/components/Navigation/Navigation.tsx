@@ -3,10 +3,11 @@ import Link from "./Link/Link";
 import Settings from "./Settings/Settings";
 import { folder } from "react-icons-kit/fa/folder";
 import { columns } from "react-icons-kit/fa/columns";
-import { user } from "react-icons-kit/fa/user";
+import { database } from "react-icons-kit/fa/database";
 
 import ReactTooltip from "react-tooltip";
 import User from "./User/User";
+import Icon from "react-icons-kit";
 
 const Navigation = () => {
   return (
@@ -19,7 +20,10 @@ const Navigation = () => {
         <div className="menu">
           <Link to={"/"} title={"Мои проекты"} icon={folder} />
           <Link to={"/editor"} title={"Редактор"} icon={columns} />
-
+          <a href={"/"}>
+            <Icon icon={database} size={32} />
+            База данных
+          </a>
           <Settings />
           <User />
         </div>

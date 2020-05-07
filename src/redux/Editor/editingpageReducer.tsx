@@ -6,6 +6,10 @@ import {
   EDITINGPAGE_CLEAR_TABS,
   EDITINGPAGE_CREATE_EDITOR,
   EDITINGPAGE_REMOVE_TAB,
+  EDITINGPAGE_RESTORE_ACTIVE_TAB,
+  EDITINGPAGE_SET_PREVIEW_PATH,
+  EDITINGPAGE_SET_PREVIEW_RESIZE,
+  EDITINGPAGE_SET_PREVIEW_VISIBLE,
   EDITINGPAGE_SET_TAB,
   EditorActionTypes,
   IEditorState,
@@ -18,7 +22,10 @@ const initialState: IEditorState = {
   previewWidth: 350,
   activeProjectName: null,
   tabs: [],
-  monaco: {}
+  monaco: {},
+  preview_visible: true,
+  preview_resize: false,
+  preview_path: null
 };
 
 export const editorReducer = (
@@ -92,7 +99,7 @@ export const editorReducer = (
       }
 
     case EDITINGPAGE_CLEAR_TABS:
-      return { ...state, tabs: [] };
+      return { ...state, tabs: [], preview_path: null };
 
     case EDITINGPAGE_SET_TAB:
       // @ts-ignore
@@ -121,6 +128,25 @@ export const editorReducer = (
 
     case EDITINGPAGE_CREATE_EDITOR:
       return { ...state, monaco: payload } as IEditorState;
+    case EDITINGPAGE_SET_PREVIEW_VISIBLE:
+      return { ...state, preview_visible: payload } as IEditorState;
+    case EDITINGPAGE_SET_PREVIEW_RESIZE:
+      return { ...state, preview_resize: payload } as IEditorState;
+    case EDITINGPAGE_SET_PREVIEW_PATH:
+      return { ...state, preview_path: payload } as IEditorState;
+    case EDITINGPAGE_RESTORE_ACTIVE_TAB:
+      state.tabs.map((item: ITab) => {
+        if (item.isActive) {
+          // @ts-ignore
+          state.monaco.setModel(item.model);
+          // @ts-ignore
+          state.monaco.restoreViewState(item.viewstate);
+        }
+        return item;
+      });
+      // @ts-ignore
+      state.monaco.focus();
+      return { ...state };
 
     default:
       return state;

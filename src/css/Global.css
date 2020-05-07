@@ -9,6 +9,7 @@ body {
   height: 100%;
   box-sizing: border-box;
   background-color: #ffffff;
+  color: #111;
   -webkit-font-smoothing: subpixel-antialiased;
 }
 
@@ -65,9 +66,8 @@ body {
   font-weight: bold;
   font-size: 11px;
   text-transform: uppercase;
-  color: #26282b;
+  color: #000000;
   margin: 0 15px;
-  transition: all 0.4s ease;
   white-space: nowrap;
 }
 .navigation .menu a.active {
@@ -90,7 +90,7 @@ body {
 }
 .navigation .menu a svg path {
   transition: fill 0.4s ease;
-  fill: #26282b;
+  fill: #000000;
 }
 
 .editing-container {
@@ -225,8 +225,7 @@ body {
 }
 
 .splitter-layout > .layout-splitter {
-  width: 2px;
-  background-color: #d4d4d4;
+  width: 12px;
 }
 
 .layout-pane .layout-pane-primary {
@@ -278,7 +277,7 @@ body {
 }
 .projectscontainer .window .top .projectsbuttons2 {
   position: absolute;
-  left: 86%;
+  left: 82%;
   top: 5px;
   display: flex;
   flex-direction: row;
@@ -350,6 +349,16 @@ body {
 
 .Toastify__toast--info {
   background: #e2022e;
+}
+.iframe_preview {
+  border: 0px solid #c3c3c3;
+}
+
+.preview_guide_image {
+  width: 215px;
+  margin-top: 10px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
 }
 
 /*# sourceMappingURL=Global.css.map */

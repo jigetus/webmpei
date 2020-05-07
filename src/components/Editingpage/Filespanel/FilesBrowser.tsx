@@ -2,9 +2,8 @@ import React, { Component } from "react";
 import Files from "./Files/Files";
 import { AppState } from "../../../redux";
 import { connect, ConnectedProps } from "react-redux";
-import { ic_add } from "react-icons-kit/md/ic_add";
-import Icon from "react-icons-kit";
 import ReactTooltip from "react-tooltip";
+import Newfile from "./Newfile/Newfile";
 
 class FilesBrowser extends Component<PropsFromRedux> {
   render() {
@@ -13,7 +12,7 @@ class FilesBrowser extends Component<PropsFromRedux> {
       <div className={"filespanel"}>
         <div className={"filescontrols"}>
           <h3>{activeProjectName}</h3>
-          <Icon size={28} icon={ic_add} data-tip="Создать файл" />
+          <Newfile />
         </div>
 
         <Files />

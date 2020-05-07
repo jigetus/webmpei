@@ -12,9 +12,13 @@ import {
 import theme2 from "../../../utils/Colors";
 import Icon from "react-icons-kit";
 import { cog } from "react-icons-kit/fa/cog";
+import { AppState } from "../../../redux";
+import { connect, ConnectedProps } from "react-redux";
+import { SetPreviewVisible } from "../../../redux/Editor/actions";
 
-class Settings extends Component {
+class Settings extends Component<PropsFromRedux> {
   render() {
+    const { preview_visible, SetPreviewVisible } = this.props;
     return (
       <PopupState variant="popover" popupId="demo-popup-popover">
         {popupState => (
@@ -40,8 +44,11 @@ class Settings extends Component {
                     <FormControlLabel
                       control={
                         <Switch
-                          checked={true}
-                          onChange={() => {}}
+                          checked={preview_visible}
+                          onChange={() => {
+                            SetPreviewVisible(!preview_visible);
+                            window.dispatchEvent(new Event("resize"));
+                          }}
                           name="checkedA"
                         />
                       }
@@ -49,32 +56,32 @@ class Settings extends Component {
                     />
                   </FormGroup>
                 </Box>
-                <Box p={2}>
-                  <FormGroup row>
-                    <FormControlLabel
-                      control={
-                        <Switch
-                          checked={true}
-                          onChange={() => {}}
-                          name="checkedA"
-                        />
-                      }
-                      label="Автосохранение"
-                    />
-                  </FormGroup>
-                </Box>
-                <Box p={2}>
-                  <Slider
-                    defaultValue={14}
-                    // aria-labelledby="discrete-slider-small-steps"
-                    step={1}
-                    min={10}
-                    max={28}
-                    valueLabelDisplay="auto"
-                    onChange={() => console.log("change")}
-                  />
-                  Размер шрифта в редакторе
-                </Box>
+                {/*<Box p={2}>*/}
+                {/*  <FormGroup row>*/}
+                {/*    <FormControlLabel*/}
+                {/*      control={*/}
+                {/*        <Switch*/}
+                {/*          checked={true}*/}
+                {/*          onChange={() => {}}*/}
+                {/*          name="checkedA"*/}
+                {/*        />*/}
+                {/*      }*/}
+                {/*      label="Автосохранение"*/}
+                {/*    />*/}
+                {/*  </FormGroup>*/}
+                {/*</Box>*/}
+                {/*<Box p={2}>*/}
+                {/*  <Slider*/}
+                {/*    defaultValue={14}*/}
+                {/*    // aria-labelledby="discrete-slider-small-steps"*/}
+                {/*    step={1}*/}
+                {/*    min={10}*/}
+                {/*    max={28}*/}
+                {/*    valueLabelDisplay="auto"*/}
+                {/*    onChange={() => {}}*/}
+                {/*  />*/}
+                {/*  Размер шрифта в редакторе*/}
+                {/*</Box>*/}
               </Popover>
             </ThemeProvider>
           </>
@@ -84,4 +91,14 @@ class Settings extends Component {
   }
 }
 
-export default Settings;
+const mapStateToProps = (state: AppState) => ({
+  preview_visible: state.editor.preview_visible
+});
+
+const connector = connect(mapStateToProps, {
+  SetPreviewVisible
+});
+
+// @ts-ignore
+type PropsFromRedux = ConnectedProps<typeof connector>;
+export default connector(Settings);

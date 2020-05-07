@@ -5,23 +5,30 @@
       <w>activetab</w>
       <w>bmpei</w>
       <w>checklogin</w>
+      <w>createfilehandler</w>
       <w>defaultvalue</w>
       <w>editormodels</w>
       <w>editorvisible</w>
       <w>errortext</w>
       <w>filescontrols</w>
+      <w>fullfilename</w>
       <w>fullpath</w>
       <w>groupid</w>
       <w>istabsnull</w>
       <w>leftmenu</w>
       <w>loadercontainer</w>
       <w>loginpage</w>
+      <w>newfilename</w>
+      <w>newfilestate</w>
+      <w>newprojectname</w>
       <w>noconflict</w>
       <w>noselect</w>
       <w>projectcard</w>
+      <w>projecthandler</w>
       <w>projectmodal</w>
       <w>projectsbuttons</w>
       <w>projectscontainer</w>
+      <w>projectsoperations</w>
       <w>projectspage</w>
       <w>tabbar</w>
       <w>teststring</w>

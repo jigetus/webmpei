@@ -6,6 +6,10 @@ import {
   EDITINGPAGE_CLEAR_TABS,
   EDITINGPAGE_CREATE_EDITOR,
   EDITINGPAGE_REMOVE_TAB,
+  EDITINGPAGE_RESTORE_ACTIVE_TAB,
+  EDITINGPAGE_SET_PREVIEW_PATH,
+  EDITINGPAGE_SET_PREVIEW_RESIZE,
+  EDITINGPAGE_SET_PREVIEW_VISIBLE,
   EDITINGPAGE_SET_TAB,
   EditorActionTypes,
   ITab
@@ -64,5 +68,32 @@ export function CreateEditor(editor: IStandaloneCodeEditor): EditorActionTypes {
   return {
     type: EDITINGPAGE_CREATE_EDITOR,
     payload: editor
+  };
+}
+
+export function SetPreviewVisible(bol: boolean): EditorActionTypes {
+  return {
+    type: EDITINGPAGE_SET_PREVIEW_VISIBLE,
+    payload: bol
+  };
+}
+
+export function SetPreviewResize(bol: boolean): EditorActionTypes {
+  return {
+    type: EDITINGPAGE_SET_PREVIEW_RESIZE,
+    payload: bol
+  };
+}
+export function SetPreviewPath(val: string | null): EditorActionTypes {
+  return {
+    type: EDITINGPAGE_SET_PREVIEW_PATH,
+    payload: val
+  };
+}
+
+export function RestoreActiveTab(): EditorActionTypes {
+  return {
+    type: EDITINGPAGE_RESTORE_ACTIVE_TAB,
+    payload: null
   };
 }

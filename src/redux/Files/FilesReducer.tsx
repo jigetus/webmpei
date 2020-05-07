@@ -8,7 +8,6 @@ import {
   SAVE_OPEN_TABS
 } from "./types";
 import { ITab } from "../Editor/types";
-import { toast } from "react-toastify";
 
 const initialState: IFilesState = {
   pending: false,
@@ -67,15 +66,6 @@ export function filesReducer(
           item.children = activeFiles;
         }
         return item;
-      });
-      toast.info("Все вкладки сохранены", {
-        position: "bottom-right",
-        autoClose: 1800,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined
       });
       return { ...state, files: tmp2 };
 
