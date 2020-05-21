@@ -3,7 +3,7 @@ import React from "react";
 
 const MyLoader = () => (
   <div className={"loadercontainer"}>
-    <Loader type="Triangle" color="#e2022e" height={250} width={250} />
+    <Loader type="Audio" color="#e2022e" height={200} width={200} />
     Загрузка...
   </div>
 );

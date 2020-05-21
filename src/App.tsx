@@ -13,6 +13,10 @@ import "react-contexify/dist/ReactContexify.min.css";
 import Loginpage from "./components/Loginpage/Loginpage";
 import MyLoader from "./components/Utility/Loader";
 import { SetUserInfo, UserLogged } from "./redux/App/actions";
+import {
+  changeFilebrowserWidth,
+  changePreviewWidth
+} from "./redux/Editor/actions";
 
 interface IAppState {
   isDataLoaded: boolean;
@@ -35,6 +39,16 @@ class App extends Component<PropsFromRedux, IAppState> {
           SetUserInfo(res.data.user_info);
           UserLogged();
           this.setState({ isDataLoaded: true });
+          if (localStorage["filebrowserWidth"] !== undefined) {
+            this.props.changeFilebrowserWidth(
+              parseInt(localStorage["filebrowserWidth"])
+            );
+          }
+          if (localStorage["previewWidth"] !== undefined) {
+            this.props.changePreviewWidth(
+              parseInt(localStorage["previewWidth"])
+            );
+          }
         }
       })
       .catch(error => {});
@@ -80,7 +94,9 @@ const mapStateToProps = (state: AppState) => ({ isLogged: state.app.isLogged });
 const connector = connect(mapStateToProps, {
   fetchFilesSuccess,
   UserLogged,
-  SetUserInfo
+  SetUserInfo,
+  changeFilebrowserWidth,
+  changePreviewWidth
 });
 
 // @ts-ignore

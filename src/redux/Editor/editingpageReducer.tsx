@@ -35,17 +35,14 @@ export const editorReducer = (
   const { type, payload } = action;
   switch (type) {
     case EDITINGPAGE_CHANGE_FILEBROWSER_WIDTH:
-      let checkfiles: number | null = null;
-      // @ts-ignore
-      if (payload < 150) checkfiles = 150;
-      // @ts-ignore
-      if (payload > 300) checkfiles = 300;
+      localStorage["filebrowserWidth"] = payload;
       return {
         ...state,
-        filebrowserWidth: checkfiles === null ? payload : checkfiles
+        filebrowserWidth: payload
       } as IEditorState;
 
     case EDITINGPAGE_CHANGE_PREVIEW_WIDTH:
+      localStorage["previewWidth"] = payload;
       return { ...state, previewWidth: payload } as IEditorState;
 
     case EDITINGPAGE_CHANGE_ACTIVE_PROJECT:

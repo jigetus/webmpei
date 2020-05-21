@@ -36,7 +36,8 @@ class Controls extends Component<PropsFromRedux> {
                 reqtabs.push({
                   path: item.file.path,
                   data,
-                  filetype: item.file.filetype
+                  filetype: item.file.filetype,
+                  filename: item.file.filename
                 });
                 return item;
               });
@@ -46,15 +47,28 @@ class Controls extends Component<PropsFromRedux> {
               };
               postData("api/savefiles.php", request).then(res => {
                 if (res.code === 200) {
-                  toast.info(res.data.message, {
-                    position: "bottom-right",
-                    autoClose: 1800,
-                    hideProgressBar: false,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    draggable: true,
-                    progress: undefined
+                  res.data.messages.map((item: any) => {
+                    if (item.code === 0) {
+                      toast.info(item.message, {
+                        position: "bottom-right",
+                        autoClose: 2200,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined
+                      });
+                    }
+                    if (item.code === 1) {
+                      toast.error(item.message, {
+                        position: "bottom-right",
+                        closeOnClick: true,
+                        draggable: true,
+                        autoClose: false
+                      });
+                    }
                   });
+
                   if (preview_visible && preview_path !== null) {
                     const iframe = document.getElementById("iframe_id");
                     // @ts-ignore

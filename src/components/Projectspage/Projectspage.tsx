@@ -16,6 +16,22 @@ import postData from "../../utils/functions";
 import { toast } from "react-toastify";
 import { fetchFilesSuccess } from "../../redux/Files/actions";
 
+const projectsvg = () => (
+  <svg
+    width="80"
+    height="80"
+    viewBox="0 0 80 80"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <defs>
+      <path id="a" d="M0 0h31l7 10h42v56H0z" />
+    </defs>
+    <g transform="translate(0 14)" fill="#E2022E">
+      <use fill="#E2022E" fillRule="evenodd" />
+      <path stroke="#E2022E" d="M.5.5v65h79v-55H37.74l-7-10H.5z" />
+    </g>
+  </svg>
+);
 interface ProjectspageSTATE {
   selectedProject: string | null;
 }
@@ -52,12 +68,9 @@ class Projectspage extends Component<PropsFromRedux, ProjectspageSTATE> {
           e.stopPropagation();
           this.setState({ selectedProject: item.filename });
         }}
+        data-tip={item.filename.length > 12 ? item.filename : null}
       >
-        <img
-          src="https://findicons.com/files/icons/766/base_software/128/folderopened_yellow.png"
-          alt=""
-        />
-        {/*<Icon icon={listAlt} size={32} style={{ color: "lightgrey" }} />*/}
+        {projectsvg()}
         <span>{item.filename}</span>
       </div>
     ));

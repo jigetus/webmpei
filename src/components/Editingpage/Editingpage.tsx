@@ -67,6 +67,7 @@ class Editingpage extends Component<PropsFromRedux, IEditingpageState> {
         <SplitterLayout
           primaryIndex={1}
           secondaryInitialSize={filebrowserWidth}
+          secondaryMinSize={150}
           onSecondaryPaneSizeChange={(size: number) => {
             this.setState({ filebrowserWidth: size });
           }}
@@ -89,6 +90,7 @@ class Editingpage extends Component<PropsFromRedux, IEditingpageState> {
             onDragStart={() => {
               SetPreviewResize(true);
             }}
+            secondaryMinSize={240}
           >
             <SplitterLayout
               vertical

@@ -76,9 +76,9 @@ class AddProject extends Component<PropsFromRedux> {
   createProjecthandler = () => {
     const { addHTML, addCSS, addJS, addPHP, newprojectname } = this.state;
     if (newprojectname === "") return false;
-    if (newprojectname.length > 18) {
+    if (newprojectname.length > 20) {
       toast.error(
-        "Имя проекта слишком большое. Максимальная длинна - 18 символов."
+        "Имя проекта слишком большое. Максимальная длинна - 20 символов."
       );
       return false;
     }
@@ -128,6 +128,7 @@ class AddProject extends Component<PropsFromRedux> {
                 label="Введите имя проекта"
                 autoFocus={true}
                 required={true}
+                variant="outlined"
                 onChange={e =>
                   this.setState({ newprojectname: e.target.value })
                 }

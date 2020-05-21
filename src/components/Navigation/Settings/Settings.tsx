@@ -5,7 +5,6 @@ import PopupState, { bindPopover, bindTrigger } from "material-ui-popup-state";
 import {
   FormControlLabel,
   FormGroup,
-  Slider,
   Switch,
   ThemeProvider
 } from "@material-ui/core";

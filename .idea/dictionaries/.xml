@@ -20,9 +20,12 @@
       <w>loginpage</w>
       <w>newfilename</w>
       <w>newfilestate</w>
+      <w>newpassword</w>
       <w>newprojectname</w>
       <w>noconflict</w>
       <w>noselect</w>
+      <w>oldpassword</w>
+      <w>passwordmodal</w>
       <w>projectcard</w>
       <w>projecthandler</w>
       <w>projectmodal</w>
@@ -30,6 +33,7 @@
       <w>projectscontainer</w>
       <w>projectsoperations</w>
       <w>projectspage</w>
+      <w>repeatpassword</w>
       <w>tabbar</w>
       <w>teststring</w>
       <w>userfiles</w>

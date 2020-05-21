@@ -11,16 +11,22 @@ import Icon from "react-icons-kit";
 
 const Navigation = () => {
   return (
-    <div className={"navigation"}>
+    <header className={"navigation"}>
       <div className="navwidth">
         <div className="logo">
-          <img src="/icons/logo.png" alt="" />
+          <a href="/">
+            <h3 className={"logo_header noselect"}>WebMPEI</h3>
+          </a>
         </div>
         <div className="helpspace" />
         <div className="menu">
           <Link to={"/"} title={"Мои проекты"} icon={folder} />
           <Link to={"/editor"} title={"Редактор"} icon={columns} />
-          <a href={"/"}>
+          <a
+            href={"/phpmyadmin/index.php"}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             <Icon icon={database} size={32} />
             База данных
           </a>
@@ -29,7 +35,7 @@ const Navigation = () => {
         </div>
       </div>
       <ReactTooltip effect={"solid"} place={"bottom"} />
-    </div>
+    </header>
   );
 };
 
