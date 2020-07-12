@@ -40,14 +40,11 @@ export const editorReducer = (
         ...state,
         filebrowserWidth: payload
       } as IEditorState;
-
     case EDITINGPAGE_CHANGE_PREVIEW_WIDTH:
       localStorage["previewWidth"] = payload;
       return { ...state, previewWidth: payload } as IEditorState;
-
     case EDITINGPAGE_CHANGE_ACTIVE_PROJECT:
       return { ...state, activeProjectName: payload } as IEditorState;
-
     case EDITINGPAGE_ADD_TAB:
       // @ts-ignore
       const { path } = payload.file;
@@ -63,7 +60,6 @@ export const editorReducer = (
       } else {
         return { ...state };
       }
-
     case EDITINGPAGE_REMOVE_TAB:
       // @ts-ignore ищем активную вкладку
       let activetabpath = "";
@@ -94,10 +90,8 @@ export const editorReducer = (
       } else {
         return { ...state, tabs: tmp } as IEditorState;
       }
-
     case EDITINGPAGE_CLEAR_TABS:
       return { ...state, tabs: [], preview_path: null };
-
     case EDITINGPAGE_SET_TAB:
       // @ts-ignore
       const savecurrent: Array<ITab> = state.tabs.map((item: ITab) => {
@@ -122,7 +116,6 @@ export const editorReducer = (
       // @ts-ignore
       state.monaco.focus();
       return { ...state, tabs: newtabs } as IEditorState;
-
     case EDITINGPAGE_CREATE_EDITOR:
       return { ...state, monaco: payload } as IEditorState;
     case EDITINGPAGE_SET_PREVIEW_VISIBLE:

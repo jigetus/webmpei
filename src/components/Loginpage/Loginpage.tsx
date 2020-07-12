@@ -157,7 +157,7 @@ class Loginpage extends Component<PropsFromRedux> {
               </Button>
               <Typography component="span" className={"mt5"}>
                 Если вы не знаете ваш логин и пароль, обратитесь к
-                преподователю.
+                преподавателю.
               </Typography>
             </form>
           </div>

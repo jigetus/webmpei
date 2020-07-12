@@ -1,7 +1,12 @@
 import React, { Component } from "react";
 import Editingpage from "./components/Editingpage/Editingpage";
 import Navigation from "./components/Navigation/Navigation";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect
+} from "react-router-dom";
 import { AppState } from "./redux";
 import { connect, ConnectedProps } from "react-redux";
 import { fetchFilesSuccess } from "./redux/Files/actions";
@@ -70,6 +75,10 @@ class App extends Component<PropsFromRedux, IAppState> {
           <Switch>
             <Route path="/" exact component={() => <Projectspage />} />
             <Route path="/editor" component={() => <Editingpage />} />
+            <Route
+              path="/admin"
+              component={() => <Redirect to={"/admin/index.html"} />}
+            />
           </Switch>
           <ToastContainer
             position="bottom-right"
